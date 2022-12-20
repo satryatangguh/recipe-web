@@ -55,7 +55,7 @@ const Home = () => {
                                                     {(index ? ", " : " ") + m}
                                                 </span>
                                             );
-                                        })} <span className='fw-normal'>{r.description}</span></p>
+                                        })}</p>
                                         
                                     </div>
 
