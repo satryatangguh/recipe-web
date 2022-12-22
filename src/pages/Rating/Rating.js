@@ -123,10 +123,10 @@ const Rating = () => {
                 </div>
               </div>
               <div className="card-footer">
-                <p className="text-muted mb-1" style={{fontSize: "13px"}}>
+                <p className="text-muted mb-1" style={{ fontSize: "13px" }}>
                   Created at: {data && data.data.createdAt}
                 </p>
-                <p className="text-muted mb-1" style={{fontSize: "13px"}}>
+                <p className="text-muted mb-1" style={{ fontSize: "13px" }}>
                   Updated at: {data && data.data.updatedAt}
                 </p>
               </div>
@@ -196,7 +196,8 @@ const Rating = () => {
                             <div className="text-center">
                               <button
                                 type="submit"
-                                className="btn bgcolor1 text-light btn-warning shadow"
+                                className="btn text-light shadow"
+                                style={{ backgroundColor: "#509E2F" }}
                               >
                                 Add
                               </button>
@@ -221,33 +222,44 @@ const Rating = () => {
                     }}
                   >
                     <li className="list-group-item shadow">
-                      <div className='d-flex justify-content-start gap-2'>
-                        <div className='d-flex'>
+                      <div className="d-flex justify-content-start gap-2">
+                        <div className="d-flex">
                           <img
                             src={r.user.profilePictureUrl}
                             className="img-fluid"
                             style={{
-                              objectFit: 'cover',
-                              borderRadius: '50%',
-                              width: '40px',
-                              height: '40px',
-                              border: '2px solid #509E2F',
+                              objectFit: "cover",
+                              borderRadius: "50%",
+                              width: "40px",
+                              height: "40px",
+                              border: "2px solid #509E2F",
                             }}
                             alt={r.user.name}
                           />
                         </div>
-                        <div className='d-flex'>
+                        <div className="d-flex">
                           <div>
-                            <p className="fw-bold mb-1" style={{ fontSize: "13px" }}>{r.user.name}</p>
-                            <p className='d-flex align-items-center' style={{fontSize: "13px"}}>
-                              <i className="ri-star-fill me-1" style={{ color: `gold` }}></i>
+                            <p
+                              className="fw-bold mb-1"
+                              style={{ fontSize: "13px" }}
+                            >
+                              {r.user.name}
+                            </p>
+                            <p
+                              className="d-flex align-items-center"
+                              style={{ fontSize: "13px" }}
+                            >
+                              <i
+                                className="ri-star-fill me-1"
+                                style={{ color: `gold` }}
+                              ></i>
                               {r.rating}
                             </p>
                           </div>
                         </div>
                       </div>
-                      <div className='d-flex justify-content-start'>
-                        <p style={{fontSize: "12px"}}>{r.review}</p>
+                      <div className="d-flex justify-content-start">
+                        <p style={{ fontSize: "12px" }}>{r.review}</p>
                       </div>
                     </li>
                   </ul>
@@ -257,7 +269,7 @@ const Rating = () => {
         </div>
       </section>
     </>
-  )
+  );
 }
 
 export default Rating;
