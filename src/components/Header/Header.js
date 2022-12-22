@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import logo from "./CPLogo.png";
+import logo from "../../assets/CPLogo.png";
 import "../Header/Header.css";
 
 const Header = () => {
+  // eslint-disable-next-line
   const [username, setUsername] = useState();
 
   useEffect(() => {
@@ -34,14 +35,16 @@ const Header = () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: "w05KkI9AWhKxzvPFtXotUva-",
       },
-    }).then((response) => {
-      alert(`${response.data.message}`);
-      localStorage.removeItem("token");
-      localStorage.removeItem("role");
-      window.location.href = "/";
-    }).catch((error) => {
-      console.log(error);
-    });
+    })
+      .then((response) => {
+        alert(`${response.data.message}`);
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

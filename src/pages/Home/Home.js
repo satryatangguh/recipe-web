@@ -18,9 +18,9 @@ const Home = () => {
       url: "https://api-bootcamp.do.dibimbing.id/api/v1/foods",
       headers: headers,
     })
-      .then((resp) => {
-        console.log(resp);
-        setFood(resp.data.data);
+      .then((response) => {
+        console.log(response);
+        setFood(response.data.data);
       })
       .catch((error) => {
         console.error(error);
