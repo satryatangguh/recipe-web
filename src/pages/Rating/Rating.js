@@ -88,10 +88,10 @@ const Rating = () => {
           <h2 className="text-center mt-4 mb-4 fw-bolder">Rating</h2>
           <div
             className="card mb-3 mx-auto food-card shadow"
-            style={{ maxWidth: `540px` }}
+            style={{ maxWidth: "600px" }}
           >
-            <div className="row g-0">
-              <div className="col-md-4">
+            <div className="row g-1">
+              <div className="col-lg-4">
                 <img
                   src={data && data.data.imageUrl}
                   className="img-fluid m-2 food-card-image"
@@ -99,7 +99,7 @@ const Rating = () => {
                   alt={data && data.data.name}
                 />
               </div>
-              <div className="col-md-8">
+              <div className="col-lg-8">
                 <div className="card-body">
                   <h5 className="card-title">{data && data.data.name}</h5>
                   <p className="card-text">{data && data.data.description}</p>
@@ -123,12 +123,12 @@ const Rating = () => {
                 </div>
               </div>
               <div className="card-footer">
-                <small className="text-muted m-1">
+                <p className="text-muted mb-1" style={{fontSize: "13px"}}>
                   Created at: {data && data.data.createdAt}
-                </small>
-                <small className="text-muted m-1">
+                </p>
+                <p className="text-muted mb-1" style={{fontSize: "13px"}}>
                   Updated at: {data && data.data.updatedAt}
-                </small>
+                </p>
               </div>
             </div>
           </div>
@@ -166,7 +166,7 @@ const Rating = () => {
                   >
                     <div className="container-md my-3">
                       <div className="text-center">
-                        <h2>Add Food Rating</h2>
+                        <h2>Rate this Food</h2>
                         <h4 className="color1 fw-bolder">
                           {data && data.data.name}
                         </h4>
@@ -215,9 +215,9 @@ const Rating = () => {
               return (
                 <div key={r.id}>
                   <ul
-                    className="list-group mt-3 mx-auto"
+                    className="mx-auto list-group mt-3"
                     style={{
-                      maxWidth: `50%`,
+                      maxWidth: "600px",
                     }}
                   >
                     <li className="list-group-item shadow">
