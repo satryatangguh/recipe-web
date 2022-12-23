@@ -13,7 +13,7 @@ const Carousel = () => {
                 <div class="col-lg-8">
                   <h6 class="text-white">WELCOME TO COOKPAL</h6>
                   <h1 class="display-1 my-3 fw-bold text-white">
-                    Char-grilled and flavor-filled
+                    Find Our Tasty Recipes Here
                   </h1>
                 </div>
               </div>
@@ -26,7 +26,7 @@ const Carousel = () => {
                 <div class="col-lg-8">
                   <h6 class="text-white">WELCOME TO COOKPAL</h6>
                   <h1 class="display-1 my-3 fw-bold text-white">
-                    Fresh & Tasty Food
+                    We Give You Fresh & Delicious
                   </h1>
                 </div>
               </div>
