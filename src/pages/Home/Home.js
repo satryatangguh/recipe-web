@@ -78,7 +78,7 @@ const Home = () => {
   return (
     <>
       <Carousel />
-      <div className="container-fluid py-5">
+      <div className="container-fluid px-3 py-5">
         <h1 className="title text-center">Explore Our Recipes</h1>
         <div className="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 mx-3">
           {food &&

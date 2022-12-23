@@ -10,7 +10,7 @@ const Carousel = () => {
             <div class="container h-100 d-flex align-items-center justify-content-center">
               <div class="row justify-content-center">
                 <div class="col-lg-8">
-                  <h6 class="text-white">WELCOME TO COOKPAL</h6>
+                  <h6 class="text-white">WELCOME TO COOKPEDIA</h6>
                   <h1 class="display-1 my-3 fw-bold text-white">
                     Find Our Tasty Recipes Here
                   </h1>
@@ -23,7 +23,7 @@ const Carousel = () => {
             <div class="container h-100 d-flex align-items-center justify-content-center">
               <div class="row justify-content-center">
                 <div class="col-lg-8">
-                  <h6 class="text-white">WELCOME TO COOKPAL</h6>
+                  <h6 class="text-white">WELCOME TO COOKPEDIA</h6>
                   <h1 class="display-1 my-3 fw-bold text-white">
                     We Give You Fresh & Delicious
                   </h1>

@@ -2,8 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+
+// Import Components
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+
+// Import Pages
 import Home from './pages/Home/Home';
 import Rating from './pages/Rating/Rating';
 

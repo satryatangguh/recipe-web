@@ -10,11 +10,10 @@ const Footer = () => {
             <div className="col">
               <h5 className="text-white">Contacts</h5>
               <div className="mt-3">
-                <span className="text-decoration-none text-white-50">
+                <span className="text-decoration-none text-white-50 d-flex align-items-center mb-1">
                   <i className="ri-mail-line me-2 fs-5"></i>cookpedia@mail.com
                 </span>
-                <br />
-                <span className="text-decoration-none text-white-50">
+                <span className="text-decoration-none text-white-50 d-flex align-items-center">
                   <i className="ri-phone-line me-2 fs-5"></i>123140122
                 </span>
               </div>
@@ -46,7 +45,7 @@ const Footer = () => {
                       className="form-control"
                       placeholder="It's Free!"
                     />
-                    <button className="btn btn-info px-4 py-2" type="button">
+                    <button className="btn btn-success px-4 py-2" type="button">
                       <i className="fw-bold far fa-paper-plane"></i>
                       <span className="d-none d-sm-inline">Subscribe</span>
                     </button>
