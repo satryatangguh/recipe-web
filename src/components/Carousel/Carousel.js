@@ -1,6 +1,5 @@
 import React from "react";
 import "../Carousel/Carousel.css"
-import cover1 from "../../assets/cover1.jpg";
 
 const Carousel = () => {
   return (
