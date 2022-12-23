@@ -5,7 +5,7 @@
 }
 
 .title {
-  color: #84BD00;
+  color: #509E2F;
 }
 
 .card-image {
@@ -15,10 +15,14 @@
 }
 
 .ri-star-fill {
-  font-size: 20px;
+  font-size: 15px;
   color: #FFD700;
 }
 
 .ri-heart-fill {
-  font-size: 20px;
+  font-size: 15px;
+}
+
+.rate {
+  font-size: 14px;
 }
