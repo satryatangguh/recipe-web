@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Home/Home.css";
+import Carousel from "../../components/Carousel/Carousel";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -76,8 +77,9 @@ const Home = () => {
 
   return (
     <>
-      <div className="container-fluid">
-        <h1 className="title text-center">Our Recipes</h1>
+      <Carousel />
+      <div className="container-fluid py-5">
+        <h1 className="title text-center">Explore Our Recipes</h1>
         <div className="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 mx-3">
           {food &&
             food.map((r) => {
@@ -86,12 +88,7 @@ const Home = () => {
                   <div className="card h-100 shadow mt-3">
                     <img
                       src={r.imageUrl}
-                      className="card-img-top mx-auto"
-                      style={{
-                        objectFit: "cover",
-                        width: "100%",
-                        height: "200px",
-                      }}
+                      className="card-img-top mx-auto card-image"
                       alt={r.name}
                     />
                     <div className="card-body">
@@ -116,13 +113,7 @@ const Home = () => {
 											<div className="d-flex align-items-center">
 												<span className="text-muted d-flex align-items-center me-3">
 													<Link style={{textDecoration: "none"}} to={`/rating/${r.id}`}>
-														<i
-															className="ri-star-fill me-1"
-															style={{
-																fontSize: "20px",
-																color: `gold`,
-															}}
-														></i>
+														<i className="ri-star-fill me-1"></i>
 													</Link>
 													{r.rating}
 												</span>
@@ -130,7 +121,6 @@ const Home = () => {
 													<i
 														className="ri-heart-fill me-1"
 														style={{
-															fontSize: "20px",
 															color: `${r.isLike ? "red" : "gray"}`,
 														}}
 														onClick={() => handleLike(r.id, r.isLike)}

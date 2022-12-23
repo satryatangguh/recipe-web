@@ -86,16 +86,12 @@ const Rating = () => {
       <section>
         <div className="container-md mt-3">
           <h2 className="text-center mt-4 mb-4 fw-bolder">Rating</h2>
-          <div
-            className="card mb-3 mx-auto food-card shadow"
-            style={{ maxWidth: "600px" }}
-          >
+          <div className="card mb-3 mx-auto shadow food-detail">
             <div className="row g-1">
               <div className="col-lg-4">
                 <img
                   src={data && data.data.imageUrl}
-                  className="img-fluid m-2 food-card-image"
-                  style={{ borderRadius: `50%` }}
+                  className="img-fluid m-2 food-image"
                   alt={data && data.data.name}
                 />
               </div>
@@ -116,17 +112,20 @@ const Rating = () => {
                   <p className="card-text">
                     <i
                       className="ri-star-fill m-1"
-                      style={{ color: `gold` }}
                     ></i>
                     {data && data.data.rating}
                   </p>
                 </div>
               </div>
               <div className="card-footer">
-                <p className="text-muted mb-1" style={{ fontSize: "13px" }}>
+                <p
+                  className="text-muted card-footer-text mb-1"
+                >
                   Created at: {data && data.data.createdAt}
                 </p>
-                <p className="text-muted mb-1" style={{ fontSize: "13px" }}>
+                <p
+                  className="text-muted card-footer-text mb-1"
+                >
                   Updated at: {data && data.data.updatedAt}
                 </p>
               </div>
@@ -135,7 +134,7 @@ const Rating = () => {
           <div className="text-center">
             <button
               type="button"
-              className="btn bgcolor1 text-light btn-warning shadow"
+              className="btn bgcolor1 text-light btn-success shadow"
               data-bs-toggle="modal"
               data-bs-target={`#staticBackdrop_${data && data.data.id}`}
             >
@@ -183,21 +182,18 @@ const Rating = () => {
                               label="Rating"
                               name="rating"
                               type="number"
-                              placeholder="Rate the food on a scale of 1-5"
                             />
 
                             <MyTextInput
                               label="Review"
                               name="review"
                               type="text"
-                              placeholder="Write a review"
                             />
 
                             <div className="text-center">
                               <button
                                 type="submit"
-                                className="btn text-light shadow"
-                                style={{ backgroundColor: "#509E2F" }}
+                                className="btn text-light shadow btn-success"
                               >
                                 Add
                               </button>
@@ -215,51 +211,30 @@ const Rating = () => {
             rating.data.map((r) => {
               return (
                 <div key={r.id}>
-                  <ul
-                    className="mx-auto list-group mt-3"
-                    style={{
-                      maxWidth: "600px",
-                    }}
-                  >
+                  <ul className="mx-auto list-group list-review mt-3">
                     <li className="list-group-item shadow">
                       <div className="d-flex justify-content-start gap-2">
                         <div className="d-flex">
                           <img
                             src={r.user.profilePictureUrl}
-                            className="img-fluid"
-                            style={{
-                              objectFit: "cover",
-                              borderRadius: "50%",
-                              width: "40px",
-                              height: "40px",
-                              border: "2px solid #509E2F",
-                            }}
+                            className="img-fluid img-profile"
                             alt={r.user.name}
                           />
                         </div>
                         <div className="d-flex">
                           <div>
-                            <p
-                              className="fw-bold mb-1"
-                              style={{ fontSize: "13px" }}
-                            >
+                            <p className="fw-bold review-name mb-1">
                               {r.user.name}
                             </p>
-                            <p
-                              className="d-flex align-items-center"
-                              style={{ fontSize: "13px" }}
-                            >
-                              <i
-                                className="ri-star-fill me-1"
-                                style={{ color: `gold` }}
-                              ></i>
+                            <p className="d-flex align-items-center review-name">
+                              <i className="ri-star-fill me-1"></i>
                               {r.rating}
                             </p>
                           </div>
                         </div>
                       </div>
-                      <div className="d-flex justify-content-start">
-                        <p style={{ fontSize: "12px" }}>{r.review}</p>
+                      <div className="d-flex justify-content-start review-comment">
+                        <p>{r.review}</p>
                       </div>
                     </li>
                   </ul>
