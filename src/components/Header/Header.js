@@ -49,8 +49,8 @@ const Header = () => {
 
   return (
     <>
-      <nav class="navbar navbar-expand-lg bg-light sticky-top">
-        <div class="container-fluid px-5">
+      <nav className="navbar navbar-expand-lg bg-light sticky-top">
+        <div className="container-fluid px-5">
           <Link className="navbar-brand d-flex align-items-center" to="/">
             <img src={logo} alt="logo" height="40" className="me-2"/>
             <span className="fw-bold fs-2 logo-color">Cookpedia</span>
