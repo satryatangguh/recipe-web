@@ -56,7 +56,7 @@ const Rating = () => {
       url: `https://api-bootcamp.do.dibimbing.id/api/v1/rate-food/${foodID}`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
-        apiKey: "w05KkI9AWhKxzvPFtXotUva-",
+        apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
       data: {
         rating: values.rating,

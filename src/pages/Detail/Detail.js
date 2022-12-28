@@ -10,16 +10,18 @@ const Detail = () => {
   useEffect(() => {
     axios({
       method: "get",
-      url: `https://api-bootcamp.do.dibimbing.id/api/v1/foods/${foodID}`,
+      url: `https://api-bootcamp.do.dibimbing.id/api/v1/foods/${id}`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
-        apiKey: "w05KkI9AWhKxzvPFtXotUva-",
+        apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
-    }).then((response) => {
-      setFood(response.data.data);
-    }).catch((error) => {
-      console.log(error);
-    });
+    })
+      .then((response) => {
+        setFood(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 
   return (
@@ -49,8 +51,13 @@ const Detail = () => {
                   </i>
                 </p>
                 <p className="card-text">
-                  <i className="ri-star-fill m-1"></i>
-                  {food.rating}
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    to={`/rating/${food.id}`}
+                  >
+                    <i className="ri-star-fill m-1"></i>
+                    {food.rating}
+                  </Link>
                 </p>
                 <p className="card-text">
                   <i className="ri-heart-fill m-1"></i>

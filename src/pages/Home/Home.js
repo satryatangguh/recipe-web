@@ -43,7 +43,7 @@ const Home = () => {
         },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
-          apiKey: "w05KkI9AWhKxzvPFtXotUva-",
+          apiKey: `${process.env.REACT_APP_APIKEY}`,
         },
       })
         .then((response) => {

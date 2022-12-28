@@ -15,7 +15,7 @@ const Header = () => {
         url: "https://api-bootcamp.do.dibimbing.id/api/v1/user",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
-          apiKey: "w05KkI9AWhKxzvPFtXotUva-",
+          apiKey: `${process.env.REACT_APP_APIKEY}`,
         },
       })
         .then((response) => {
@@ -33,7 +33,7 @@ const Header = () => {
       url: "https://api-bootcamp.do.dibimbing.id/api/v1/logout",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
-        apiKey: "w05KkI9AWhKxzvPFtXotUva-",
+        apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
     })
       .then((response) => {
