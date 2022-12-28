@@ -50,7 +50,7 @@ const Detail = () => {
                 <div className="d-flex gap-2 mb-1">
                   <i className="ri-file-list-line"></i>
                   <p className="card-text">
-                    Ingredients:
+                    <span className='fw-bold'>Ingredients: </span>
                     {food &&
                       food.ingredients.map((m, index) => {
                         return (
@@ -62,14 +62,14 @@ const Detail = () => {
                 <div className="d-flex gap-2 mb-1">
                   <i className="ri-file-list-line"></i>
                   <p className="card-text">
-                    <span className="fw-bold">Created At: </span>
+                    <span className="fw-bold">Created at: </span>
                     {food.createdAt}
                   </p>
                 </div>
                 <div className="d-flex gap-2 mb-1">
                   <i className="ri-file-list-line"></i>
                   <p className="card-text">
-                    <span className="fw-bold">Updated At: </span>
+                    <span className="fw-bold">Updated at: </span>
                     {food.updatedAt}
                   </p>
                 </div>

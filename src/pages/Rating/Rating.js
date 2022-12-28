@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "../Rating/Rating.css";
@@ -91,41 +91,68 @@ const Rating = () => {
       <section className="container-fluid py-5">
         <div className="card mb-3 mx-auto shadow food-detail">
           <div className="card-body">
-            <div className="row g-1">
-              <div className="col-lg-4">
+            <div className="row g-2">
+              <div className="col-lg-4 col-md-4 col-sm-4">
                 <img
-                  src={data && data.imageUrl}
-                  className="img-fluid m-2 food-image"
-                  alt={data && data.name}
+                  src={data.imageUrl}
+                  className="img-fluid m-0 img-food"
+                  alt={data.name}
                 />
               </div>
-              <div className="col-lg-8">
-                <h5 className="card-title">{data && data.name}</h5>
-                <p className="card-text">{data && data.description}</p>
-                <p className="card-text">
-                  <i className="fa-brands fa-elementor">
+              <div className="col-lg-8 col-md-8 col-sm-8">
+                <h2 className="card-title fs-4 mb-3">{data.name}</h2>
+                <div className="d-flex gap-2 mb-1">
+                  <i className="ri-file-list-line"></i>
+                  <p className="card-text">
+                    <span className="fw-bold">Description: </span>
+                    {data.description}
+                  </p>
+                </div>
+                <div className="d-flex gap-2 mb-1">
+                  <i className="ri-file-list-line"></i>
+                  <p className="card-text">
+                    <span className="fw-bold">Ingredients: </span>
                     {data &&
                       data.ingredients.map((m, index) => {
                         return (
                           <span key={index}>{(index ? ", " : "") + m}</span>
                         );
                       })}
-                  </i>
-                </p>
-                <p className="card-text">
-                  <i className="ri-star-fill m-1"></i>
-                  {data && data.rating}
-                </p>
+                  </p>
+                </div>
+                <div className="d-flex gap-2 mb-1">
+                  <i className="ri-file-list-line"></i>
+                  <p className="card-text">
+                    <span className="fw-bold">Created at: </span>
+                    {data.createdAt}
+                  </p>
+                </div>
+                <div className="d-flex gap-2 mb-1">
+                  <i className="ri-file-list-line"></i>
+                  <p className="card-text">
+                    <span className="fw-bold">Updated at: </span>
+                    {data.updatedAt}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
           <div className="card-footer ">
-            <p className="text-muted card-footer-text mb-1">
-              Created at: {data && data.createdAt}
-            </p>
-            <p className="text-muted card-footer-text mb-1">
-              Updated at: {data && data.updatedAt}
-            </p>
+            <div className="d-flex align-items-center mt-auto">
+              <span className="text-muted d-flex align-items-center me-3 rate">
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`/rating/${data.id}`}
+                >
+                  <i className="ri-star-fill me-1"></i>
+                </Link>
+                {data.rating}
+              </span>
+              <span className="text-muted d-flex align-items-center rate">
+                <i className="ri-heart-fill me-1"></i>
+                {data.totalLikes}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -139,6 +166,7 @@ const Rating = () => {
             Rate Food
           </button>
         </div>
+        
         <div
           className="modal fade"
           id={`rating${data && data.id}`}
@@ -164,9 +192,7 @@ const Rating = () => {
                   <div className="container-md my-3">
                     <div className="text-center">
                       <h2>Rate this Food</h2>
-                      <h4 className="color1 fw-bolder">
-                        {data && data.name}
-                      </h4>
+                      <h4 className="color1 fw-bolder">{data && data.name}</h4>
                     </div>
                     <div className="row justify-content-center my-3">
                       <div className="col-md-12">
@@ -205,7 +231,7 @@ const Rating = () => {
             </div>
           </div>
         </div>
-        
+
         {rating &&
           rating.map((rate) => {
             return (
