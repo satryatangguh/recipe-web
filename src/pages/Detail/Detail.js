@@ -12,11 +12,12 @@ const Detail = () => {
       method: "get",
       url: `https://api-bootcamp.do.dibimbing.id/api/v1/foods/${id}`,
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        // Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
     })
       .then((response) => {
+        console.log(response.data);
         setFood(response.data.data);
       })
       .catch((error) => {
@@ -29,50 +30,68 @@ const Detail = () => {
       <section className="container-fluid py-5">
         <div className="card mb-3 mx-auto shadow food-detail">
           <div className="card-body">
-            <div className="row g-1">
-              <div className="col-lg-4">
+            <div className="row g-2">
+              <div className="col-lg-4 col-md-4 col-sm-4">
                 <img
                   src={food.imageUrl}
-                  className="img-fluid m-2 food-image"
+                  className="img-fluid m-0 img-food"
                   alt={food.name}
                 />
               </div>
-              <div className="col-lg-8">
-                <h5 className="card-title">{food.name}</h5>
-                <p className="card-text">{food.description}</p>
-                <p className="card-text">
-                  <i className="fa-brands fa-elementor">
+              <div className="col-lg-8 col-md-8 col-sm-8">
+                <h2 className="card-title fs-4 mb-3">{food.name}</h2>
+                <div className="d-flex gap-2 mb-1">
+                  <i className="ri-file-list-line"></i>
+                  <p className="card-text">
+                    <span className="fw-bold">Description: </span>
+                    {food.description}
+                  </p>
+                </div>
+                <div className="d-flex gap-2 mb-1">
+                  <i className="ri-file-list-line"></i>
+                  <p className="card-text">
+                    Ingredients:
                     {food &&
                       food.ingredients.map((m, index) => {
                         return (
                           <span key={index}>{(index ? ", " : "") + m}</span>
                         );
                       })}
-                  </i>
-                </p>
-                <p className="card-text">
-                  <Link
-                    style={{ textDecoration: "none" }}
-                    to={`/rating/${food.id}`}
-                  >
-                    <i className="ri-star-fill m-1"></i>
-                    {food.rating}
-                  </Link>
-                </p>
-                <p className="card-text">
-                  <i className="ri-heart-fill m-1"></i>
-                  {food.totalLikes}
-                </p>
+                  </p>
+                </div>
+                <div className="d-flex gap-2 mb-1">
+                  <i className="ri-file-list-line"></i>
+                  <p className="card-text">
+                    <span className="fw-bold">Created At: </span>
+                    {food.createdAt}
+                  </p>
+                </div>
+                <div className="d-flex gap-2 mb-1">
+                  <i className="ri-file-list-line"></i>
+                  <p className="card-text">
+                    <span className="fw-bold">Updated At: </span>
+                    {food.updatedAt}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
           <div className="card-footer ">
-            <p className="text-muted card-footer-text mb-1">
-              Created at: {food.createdAt}
-            </p>
-            <p className="text-muted card-footer-text mb-1">
-              Updated at: {food.updatedAt}
-            </p>
+            <div className="d-flex align-items-center mt-auto">
+              <span className="text-muted d-flex align-items-center me-3 rate">
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`/rating/${food.id}`}
+                >
+                  <i className="ri-star-fill me-1"></i>
+                </Link>
+                {food.rating}
+              </span>
+              <span className="text-muted d-flex align-items-center rate">
+                <i className="ri-heart-fill me-1"></i>
+                {food.totalLikes}
+              </span>
+            </div>
           </div>
         </div>
       </section>

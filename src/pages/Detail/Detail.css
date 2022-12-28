@@ -3,3 +3,35 @@
   padding: 0;
   font-family: 'Spline Sans', sans-serif;
 }
+
+.food-detail {
+  max-width: 600px;
+}
+
+.img-food {
+  height: 180px;
+  width: 180px;
+  object-fit: cover;
+}
+
+.ri-star-fill {
+  font-size: 15px;
+  color: #FFD700;
+}
+
+.ri-heart-fill {
+  font-size: 15px;
+  color: #FF0000;
+}
+
+.rate {
+  font-size: 14px;
+}
+
+@media (max-width: 576px){
+  .img-food {
+    height: 500px;
+    width: 500px;
+    object-fit: cover;
+  }
+}

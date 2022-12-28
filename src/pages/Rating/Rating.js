@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Formik, Form, useField } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import "../Rating/Rating.css";
 
@@ -17,7 +17,7 @@ const Rating = () => {
       url: `https://api-bootcamp.do.dibimbing.id/api/v1/foods/${foodID}`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
-        apiKey: "w05KkI9AWhKxzvPFtXotUva-",
+        apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
     })
       .then((response) => {
@@ -50,8 +50,9 @@ const Rating = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foodID]);
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const values = formik.values;
     axios({
       method: "post",
       url: `https://api-bootcamp.do.dibimbing.id/api/v1/rate-food/${foodID}`,
@@ -67,24 +68,23 @@ const Rating = () => {
       .then((response) => {
         console.log(response);
         getFoodRating();
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const MyTextInput = ({ label, ...props }) => {
-    const [field, meta] = useField(props);
-    return (
-      <div className="mb-3">
-        <label htmlFor={props.id || props.name}>{label}</label>
-        <input className="text-input form-control" {...field} {...props} />
-        {meta.touched && meta.error ? (
-          <div className="error">{meta.error}</div>
-        ) : null}
-      </div>
-    );
-  };
+  const formik = useFormik({
+    initialValues: {
+      rating: "",
+      review: "",
+    },
+    validationSchema: Yup.object({
+      rating: Yup.string().required("Required"),
+      review: Yup.string().required("Required"),
+    }),
+  });
 
   return (
     <>
@@ -94,18 +94,18 @@ const Rating = () => {
             <div className="row g-1">
               <div className="col-lg-4">
                 <img
-                  src={data && data.data.imageUrl}
+                  src={data && data.imageUrl}
                   className="img-fluid m-2 food-image"
-                  alt={data && data.data.name}
+                  alt={data && data.name}
                 />
               </div>
               <div className="col-lg-8">
-                <h5 className="card-title">{data && data.data.name}</h5>
-                <p className="card-text">{data && data.data.description}</p>
+                <h5 className="card-title">{data && data.name}</h5>
+                <p className="card-text">{data && data.description}</p>
                 <p className="card-text">
                   <i className="fa-brands fa-elementor">
                     {data &&
-                      data.data.ingredients.map((m, index) => {
+                      data.ingredients.map((m, index) => {
                         return (
                           <span key={index}>{(index ? ", " : "") + m}</span>
                         );
@@ -114,33 +114,34 @@ const Rating = () => {
                 </p>
                 <p className="card-text">
                   <i className="ri-star-fill m-1"></i>
-                  {data && data.data.rating}
+                  {data && data.rating}
                 </p>
               </div>
             </div>
           </div>
           <div className="card-footer ">
             <p className="text-muted card-footer-text mb-1">
-              Created at: {data && data.data.createdAt}
+              Created at: {data && data.createdAt}
             </p>
             <p className="text-muted card-footer-text mb-1">
-              Updated at: {data && data.data.updatedAt}
+              Updated at: {data && data.updatedAt}
             </p>
           </div>
         </div>
+
         <div className="text-center">
           <button
             type="button"
             className="btn bgcolor1 text-light btn-success shadow"
             data-bs-toggle="modal"
-            data-bs-target={`#staticBackdrop_${data && data.data.id}`}
+            data-bs-target={`#rating${data && data.data.id}`}
           >
             Rate Food
           </button>
         </div>
         <div
           className="modal fade"
-          id={`staticBackdrop_${data && data.data.id}`}
+          id={`rating${data && data.id}`}
           tabIndex="-1"
           aria-labelledby="modal-title"
           aria-hidden="true"
@@ -164,7 +165,7 @@ const Rating = () => {
                     <div className="text-center">
                       <h2>Rate this Food</h2>
                       <h4 className="color1 fw-bolder">
-                        {data && data.data.name}
+                        {data && data.name}
                       </h4>
                     </div>
                     <div className="row justify-content-center my-3">
@@ -204,34 +205,35 @@ const Rating = () => {
             </div>
           </div>
         </div>
+        
         {rating &&
-          rating.data.map((r) => {
+          rating.map((rate) => {
             return (
-              <div key={r.id}>
+              <div key={rate.id}>
                 <ul className="mx-auto list-group list-review mt-3">
                   <li className="list-group-item shadow">
                     <div className="d-flex justify-content-start gap-2">
                       <div className="d-flex">
                         <img
-                          src={r.user.profilePictureUrl}
+                          src={rate.user.profilePictureUrl}
                           className="img-fluid img-profile"
-                          alt={r.user.name}
+                          alt={rate.user.name}
                         />
                       </div>
                       <div className="d-flex">
                         <div>
                           <p className="fw-bold review-name mb-1">
-                            {r.user.name}
+                            {rate.user.name}
                           </p>
                           <p className="d-flex align-items-center review-name">
                             <i className="ri-star-fill me-1"></i>
-                            {r.rating}
+                            {rate.rating}
                           </p>
                         </div>
                       </div>
                     </div>
                     <div className="d-flex justify-content-start review-comment">
-                      <p>{r.review}</p>
+                      <p>{rate.review}</p>
                     </div>
                   </li>
                 </ul>
