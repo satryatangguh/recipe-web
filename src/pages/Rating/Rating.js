@@ -33,11 +33,12 @@ const Rating = () => {
       method: "get",
       url: `https://api-bootcamp.do.dibimbing.id/api/v1/food-rating/${foodID}`,
       headers: {
-        apiKey: "w05KkI9AWhKxzvPFtXotUva-",
+        apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
     })
       .then((response) => {
-        setRating(response.data);
+        console.log(response);
+        setRating(response.data.data);
       })
       .catch((error) => {
         console.log(error);

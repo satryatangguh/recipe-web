@@ -10,10 +10,10 @@ const Home = () => {
   const getFoodData = () => {
     const headers = localStorage.getItem("token")
       ? {
-          apiKey: "w05KkI9AWhKxzvPFtXotUva-",
+          apiKey: `${process.env.REACT_APP_APIKEY}`,
           Authorization: `Bearer ${localStorage.getItem(`token`)}`,
         }
-      : { apiKey: "w05KkI9AWhKxzvPFtXotUva-" };
+      : { apiKey: `${process.env.REACT_APP_APIKEY}`, };
     axios({
       method: "get",
       url: "https://api-bootcamp.do.dibimbing.id/api/v1/foods",
