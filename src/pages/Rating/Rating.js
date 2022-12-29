@@ -1,37 +1,38 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "../Rating/Rating.css";
 
-const Rating = () => {
-  let { foodsID } = useParams();
+const Rate = () => {
+  let { foodID } = useParams();
 
-  const [food, setFood] = useState();
+  const [food, setFood] = useState("");
   const [rating, setRating] = useState();
 
   useEffect(() => {
     axios({
       method: "get",
-      url: `https://api-bootcamp.do.dibimbing.id/api/v1/foods/${foodsID}`,
+      url: `https://api-bootcamp.do.dibimbing.id/api/v1/foods/${foodID}`,
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        // Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
     })
       .then((response) => {
+        console.log(response);
         setFood(response.data.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [foodsID]);
+  }, [foodID]);
 
-  const getFoodRating = () => {
+  const getRating = () => {
     axios({
       method: "get",
-      url: `https://api-bootcamp.do.dibimbing.id/api/v1/food-rating/${foodsID}`,
+      url: `https://api-bootcamp.do.dibimbing.id/api/v1/food-rating/${foodID}`,
       headers: {
         apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
@@ -46,16 +47,16 @@ const Rating = () => {
   };
 
   useEffect(() => {
-    getFoodRating();
+    getRating();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [foodsID]);
+  }, [foodID]);
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const values = formik.values;
     axios({
       method: "post",
-      url: `https://api-bootcamp.do.dibimbing.id/api/v1/rate-food/${foodsID}`,
+      url: `https://api-bootcamp.do.dibimbing.id/api/v1/rate-food/${foodID}`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,
@@ -65,9 +66,9 @@ const Rating = () => {
         review: values.review,
       },
     })
-      .then((response) => {
-        console.log(response);
-        getFoodRating();
+      .then((res) => {
+        console.log(res);
+        getRating();
         window.location.reload();
       })
       .catch((error) => {
@@ -94,18 +95,18 @@ const Rating = () => {
             <div className="row g-2">
               <div className="col-lg-4 col-md-4 col-sm-4">
                 <img
-                  src={food.imageUrl}
+                  src={food && food.imageUrl}
                   className="img-fluid m-0 img-food"
-                  alt={food.name}
+                  alt={food && food.name}
                 />
               </div>
               <div className="col-lg-8 col-md-8 col-sm-8">
-                <h2 className="card-title fs-4 mb-3">{food.name}</h2>
+                <h2 className="card-title fs-4 mb-3">{food && food.name}</h2>
                 <div className="d-flex gap-2 mb-1">
                   <i className="ri-file-list-line"></i>
                   <p className="card-text">
                     <span className="fw-bold">Description: </span>
-                    {food.description}
+                    {food && food.description}
                   </p>
                 </div>
                 <div className="d-flex gap-2 mb-1">
@@ -124,14 +125,14 @@ const Rating = () => {
                   <i className="ri-file-list-line"></i>
                   <p className="card-text">
                     <span className="fw-bold">Created at: </span>
-                    {food.createdAt}
+                    {food && food.createdAt}
                   </p>
                 </div>
                 <div className="d-flex gap-2 mb-1">
                   <i className="ri-file-list-line"></i>
                   <p className="card-text">
                     <span className="fw-bold">Updated at: </span>
-                    {food.updatedAt}
+                    {food && food.updatedAt}
                   </p>
                 </div>
               </div>
@@ -141,11 +142,11 @@ const Rating = () => {
             <div className="d-flex align-items-center mt-auto">
               <span className="text-muted d-flex align-items-center me-3 rate">
                 <i className="ri-star-fill me-1"></i>
-                {food.rating}
+                {food && food.rating}
               </span>
               <span className="text-muted d-flex align-items-center rate">
                 <i className="ri-heart-fill me-1"></i>
-                {food.totalLikes}
+                {food && food.totalLikes}
               </span>
             </div>
           </div>
@@ -164,7 +165,7 @@ const Rating = () => {
 
         <div
           className="modal fade"
-          id={`rating${food && data.id}`}
+          id={`rating${food && food.id}`}
           tabIndex="-1"
           aria-labelledby="modal-title"
           aria-hidden="true"
@@ -172,30 +173,21 @@ const Rating = () => {
           <div className="modal-dialog modal-md">
             <div className="modal-content">
               <div className="modal-body">
-                <form
-                  className="box-addFoods"
-                  onSubmit={(e) => onSubmit(e, data.id)}
-                >
-                  <div className="text-center">
-                    <h2
-                      style={{
-                        color: "#0d6efd",
-                        position: "relative",
-                        right: "-30px",
-                      }}
-                    >
-                      Create Rating
-                    </h2>
-                    <h4 className="color1 fw-bolder">
-                      {/* {foods && foods.name} */}
-                    </h4>
-                  </div>
-                  <div
-                    style={{ position: "relative", right: "40px" }}
-                    className="row gap-4"
-                  >
-                    <div className="col-md-6">
-                      <label for="inputName" className="form-label">
+                <div className="text-center">
+                  <h2 className="fs-3">Rate This Food</h2>
+                  <img
+                    src={food && food.imageUrl}
+                    className="img-fluid img-food-rate my-3"
+                    alt={food && food.name}
+                  />
+                </div>
+                <form onSubmit={(e) => handleSubmit(e, food.id)}>
+                  <div className="row">
+                    <div className="col-lg-12 mb-4">
+                      <label
+                        forhtml="inputName"
+                        className="form-label fw-bold mt-1"
+                      >
                         Rating
                       </label>
                       <input
@@ -203,12 +195,15 @@ const Rating = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         type="number"
-                        className="add-input"
+                        className="form-control"
                         id="rating"
                       />
                     </div>
-                    <div className="col-md-6">
-                      <label for="inputName" className="form-label">
+                    <div className="col-lg-12">
+                      <label
+                        forhtml="inputName"
+                        className="form-label fw-bold mt-1"
+                      >
                         Review
                       </label>
                       <input
@@ -216,13 +211,16 @@ const Rating = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         type="text"
-                        className="add-input"
+                        className="form-control"
                         id="review"
                       />
                     </div>
-                    <div className="col-12">
-                      <button type="submit" className="btn btn-primary">
-                        Create
+                    <div className="text-center mt-4">
+                      <button
+                        type="submit"
+                        className="btn text-light shadow btn-success"
+                      >
+                        Add
                       </button>
                     </div>
                   </div>
@@ -271,4 +269,4 @@ const Rating = () => {
   );
 };
 
-export default Rating;
+export default Rate;

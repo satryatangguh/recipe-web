@@ -10,8 +10,7 @@ import Footer from './components/Footer/Footer';
 // Import Pages
 import Home from './pages/Home/Home';
 import Detail from './pages/Detail/Detail';
-// import Rating from './pages/Rating/Rating';
-import Rate from './pages/Rating/Rate';
+import Rating from './pages/Rating/Rating';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/rating/:foodID",
-        element: <Rate />,
+        element: <Rating />,
       },
       {
         path: "/detail/:id",
