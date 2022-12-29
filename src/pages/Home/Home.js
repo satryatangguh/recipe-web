@@ -80,7 +80,7 @@ const Home = () => {
       <Carousel />
       <section className="container-fluid py-5">
         <h1 className="title text-center">Explore Our Recipes</h1>
-        <div className="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 mt-3 mx-5">
+        <div className="row row-cols row-cols-md-3 row-cols-lg-5 g-4 mt-3 mx-lg-5 mx-4">
           {food &&
             food.map((r) => {
               return (

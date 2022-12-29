@@ -17,13 +17,13 @@ const Detail = () => {
       },
     })
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
         setFood(response.data.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  });
+  }, [id]);
 
   return (
     <>
@@ -33,9 +33,9 @@ const Detail = () => {
             <div className="row g-2">
               <div className="col-lg-4 col-md-4 col-sm-4">
                 <img
-                  src={food.imageUrl}
+                  src={food && food.imageUrl}
                   className="img-fluid m-0 img-food"
-                  alt={food.name}
+                  alt={food && food.name}
                 />
               </div>
               <div className="col-lg-8 col-md-8 col-sm-8">
@@ -44,13 +44,13 @@ const Detail = () => {
                   <i className="ri-file-list-line"></i>
                   <p className="card-text">
                     <span className="fw-bold">Description: </span>
-                    {food.description}
+                    {food && food.description}
                   </p>
                 </div>
                 <div className="d-flex gap-2 mb-1">
                   <i className="ri-file-list-line"></i>
                   <p className="card-text">
-                    <span className='fw-bold'>Ingredients: </span>
+                    <span className="fw-bold">Ingredients: </span>
                     {food &&
                       food.ingredients.map((m, index) => {
                         return (
@@ -63,14 +63,14 @@ const Detail = () => {
                   <i className="ri-file-list-line"></i>
                   <p className="card-text">
                     <span className="fw-bold">Created at: </span>
-                    {food.createdAt}
+                    {food && food.createdAt}
                   </p>
                 </div>
                 <div className="d-flex gap-2 mb-1">
                   <i className="ri-file-list-line"></i>
                   <p className="card-text">
                     <span className="fw-bold">Updated at: </span>
-                    {food.updatedAt}
+                    {food && food.updatedAt}
                   </p>
                 </div>
               </div>
@@ -85,11 +85,11 @@ const Detail = () => {
                 >
                   <i className="ri-star-fill me-1"></i>
                 </Link>
-                {food.rating}
+                {food && food.rating}
               </span>
               <span className="text-muted d-flex align-items-center rate">
                 <i className="ri-heart-fill me-1"></i>
-                {food.totalLikes}
+                {food && food.totalLikes}
               </span>
             </div>
           </div>
