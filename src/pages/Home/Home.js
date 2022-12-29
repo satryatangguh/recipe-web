@@ -84,51 +84,53 @@ const Home = () => {
           {food &&
             food.map((r) => {
               return (
-                <div className="card-group gy-0" key={r.id}>
-                  <div className="card mh-100 shadow mt-4">
-                    <img
-                      src={r.imageUrl}
-                      className="card-img-top mx-auto card-image"
-                      alt={r.name}
-                    />
-                    <div className="card-body d-flex flex-column p-2">
-                      <h5 className="card-title text-start text-capitalize fs-6 mb-1">
-                        {r.name}
-                      </h5>
-                      <div className="d-flex align-items-center mt-auto">
-                        <span className="text-muted d-flex align-items-center me-3 rate">
-                          <Link
-                            style={{ textDecoration: "none" }}
-                            to={`/rating/${r.id}`}
-                          >
-                            <i className="ri-star-fill me-1"></i>
-                          </Link>
-                          {r.rating}
-                        </span>
-                        <span className="text-muted d-flex align-items-center rate">
-                          <i
-                            className="ri-heart-fill me-1"
-                            style={{
-                              color: `${r.isLike ? "red" : "gray"}`,
-                            }}
-                            onClick={() => handleLike(r.id, r.isLike)}
-                          ></i>
-                          {r.totalLikes}
-                        </span>
+                <>
+                  <div className="card-group gy-0" key={r.id}>
+                    <div className="card mh-100 shadow mt-4">
+                      <img
+                        src={r.imageUrl}
+                        className="card-img-top mx-auto card-image"
+                        alt={r.name}
+                      />
+                      <div className="card-body d-flex flex-column p-2">
+                        <h5 className="card-title text-start text-capitalize fs-6 mb-1">
+                          {r.name}
+                        </h5>
+                        <div className="d-flex align-items-center mt-auto">
+                          <span className="text-muted d-flex align-items-center me-3 rate">
+                            <Link
+                              style={{ textDecoration: "none" }}
+                              to={`/rating/${r.id}`}
+                            >
+                              <i className="ri-star-fill me-1"></i>
+                            </Link>
+                            {r.rating}
+                          </span>
+                          <span className="text-muted d-flex align-items-center rate">
+                            <i
+                              className="ri-heart-fill me-1"
+                              style={{
+                                color: `${r.isLike ? "red" : "gray"}`,
+                              }}
+                              onClick={() => handleLike(r.id, r.isLike)}
+                            ></i>
+                            {r.totalLikes}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="card-footer d-flex align-items-center justify-content-end">
+                        <Link
+                          style={{ textDecoration: "none", fontSize: "13px" }}
+                          to={`/detail/${r.id}`}
+                          className="d-flex align-items-center text-success"
+                        >
+                          View Detail
+                          <i className="ri-arrow-right-line ms-1"></i>
+                        </Link>
                       </div>
                     </div>
-                    <div className="card-footer d-flex align-items-center justify-content-end">
-                      <Link
-                        style={{ textDecoration: "none", fontSize: "13px" }}
-                        to={`/detail/${r.id}`}
-                        className="d-flex align-items-center text-success"
-                      >
-                        View Detail
-                        <i className="ri-arrow-right-line ms-1"></i>
-                      </Link>
-                    </div>
                   </div>
-                </div>
+                </>
               );
           })}
         </div>

@@ -4,12 +4,16 @@
   font-family: 'Spline Sans', sans-serif;
 }
 
-.food-detail, .list-review {
-  max-width: 600px;
+.img-food-rate {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #376822;
 }
 
-.food-image {
-  border-radius: 50%;
+.food-detail, .list-review {
+  max-width: 600px;
 }
 
 .card-footer .card-footer-text {
