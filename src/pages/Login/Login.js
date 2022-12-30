@@ -1,0 +1,111 @@
+import React from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+import "../Login/Login.css";
+
+const Login = () => {
+  const formLogin = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().required("Required"),
+      password: Yup.string().required("Required"),
+    }),
+    onSubmit: (values) => {
+      axios({
+        method: "post",
+        url: "https://api-bootcamp.do.dibimbing.id/api/v1/login",
+        headers: {
+          apiKey: `${process.env.REACT_APP_APIKEY}`,
+        },
+        data: {
+          email: values.email,
+          password: values.password,
+        },
+      })
+        .then((Response) => {
+          alert("Login success, welcome to Cookpedia!");
+          const token = Response.data.token;
+          localStorage.setItem("token", token);
+
+          const role = Response.data.user.role;
+          localStorage.setItem("role", role);
+
+          const name = Response.data.user.name;
+          localStorage.setItem("name", name);
+
+          const email = values.email;
+          localStorage.setItem("email", email);
+          window.location.href = "/";
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Login Failed! Please, Check Email and Password !!");
+        });
+    },
+  });
+  
+
+  return (
+    <>
+      <section className="container-fluid py-5">
+        <div className="card mx-auto shadow sign-card p-3">
+          <div className="card-body">
+            <h2 className="title text-center">Log in</h2>
+            <form onSubmit={formLogin.handleSubmit} className="sign-in-form">
+              <div className="mb-3">
+                <label className="form-label fw-bold mt-1">Username</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="text"
+                  className="form-control"
+                  onChange={formLogin.handleChange}
+                  onBlur={formLogin.handleBlur}
+                  value={formLogin.values.email}
+                  placeholder="Email"
+                />
+                {formLogin.touched.email && formLogin.errors.email ? (
+                  <div>{formLogin.errors.email}</div>
+                ) : null}
+              </div>
+              <div className="mb-3">
+                <label className="form-label fw-bold mt-1">Password</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  className="form-control"
+                  onChange={formLogin.handleChange}
+                  onBlur={formLogin.handleBlur}
+                  value={formLogin.values.password}
+                  placeholder="Password"
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  type="submit"
+                  value="Login"
+                  className="btn btn-success w-100"
+                />
+              </div>
+              <p className="fw-bold text-center">Not Registered Yet?
+                <span className="ms-1">
+                  <Link className="text-decoration-none text-success" to="/register">
+                    Create an Account
+                  </Link>
+                </span>
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+export default Login

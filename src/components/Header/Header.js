@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import logo from "../../assets/CPLogo.png";
@@ -15,7 +15,7 @@ const Header = () => {
         url: "https://api-bootcamp.do.dibimbing.id/api/v1/user",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
-          apiKey: `${process.env.REACT_APP_APIKEY}`,
+          apiKey: process.env.REACT_APP_APIKEY,
         },
       })
         .then((response) => {
@@ -33,26 +33,27 @@ const Header = () => {
       url: "https://api-bootcamp.do.dibimbing.id/api/v1/logout",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
-        apiKey: `${process.env.REACT_APP_APIKEY}`,
+        apiKey: process.env.REACT_APP_APIKEY,
       },
     })
       .then((response) => {
-        alert(`${response.data.message}`);
         localStorage.removeItem("token");
         localStorage.removeItem("role");
+        localStorage.removeItem("email");
+        localStorage.removeItem("name");
         window.location.href = "/";
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
+  
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-light sticky-top">
         <div className="container-fluid px-lg-5">
           <Link className="navbar-brand d-flex align-items-center" to="/">
-            <img src={logo} alt="logo" height="40" className="me-2"/>
+            <img src={logo} alt="logo" height="40" className="me-2" />
             <span className="fw-bold fs-2 logo-color">Cookpedia</span>
           </Link>
           <button
@@ -67,40 +68,33 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {localStorage.getItem("token") ? (
                 <>
                   <li className="nav-item ">
-                    <Link className="nav-link fw-bold text-dark" to="/">
-                      Home
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      className="nav-link fw-bold text-dark"
-                      to="/myfavorite"
-                    >
-                      My Favorite
+                    <Link className="nav-link fw-bold text-dark" to="/favorite">
+                      Favorite
                     </Link>
                   </li>
                 </>
               ) : null}
               {localStorage.getItem("role") === "admin" ? (
-                <li className="nav-item fw-bold">
-                  <Link className="nav-link text-dark" to="/foodboard">
-                    Food Board
-                  </Link>
-                </li>
+                <>
+                  <li className="nav-item ">
+                    <Link className="nav-link fw-bold text-dark" to="/add-food">
+                      Add Food
+                    </Link>
+                  </li>
+                </>
               ) : null}
             </ul>
-            <div className="d-flex">
+            <span>
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
                 {localStorage.getItem("token") ? (
                   <li className="nav-item dropdown">
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a
-                      className="nav-link dropdown-toggle fw-bold text-dark"
-                      href="#"
+                      className="nav-link fw-bold text-dark dropdown-toggle"
                       role="button"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
@@ -137,9 +131,15 @@ const Header = () => {
                       </li>
                     </ul>
                   </li>
-                ) : null}
+                ) : (
+                  <li className="nav-item ">
+                    <Link className="nav-link fw-bold text-dark" to="/login">
+                      Login
+                    </Link>
+                  </li>
+                )}
               </ul>
-            </div>
+            </span>
           </div>
         </div>
       </nav>
