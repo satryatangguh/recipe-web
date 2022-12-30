@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import Detail from './pages/Detail/Detail';
 import Rating from './pages/Rating/Rating';
+import Favorite from './pages/Favorite/Favorite';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         path: "/detail/:id",
         element: <Detail />,
       },
+      {
+        path: "/favorite",
+        element: <Favorite />,
+      }
     ],
   },
 ]);

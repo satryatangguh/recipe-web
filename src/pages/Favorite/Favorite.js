@@ -1,38 +1,31 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../Home/Home.css";
-import Carousel from "../../components/Carousel/Carousel";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import "../Favorite/Favorite.css";
+import { Link } from 'react-router-dom';
 
-const Home = () => {
-  const [food, setFood] = useState([]);
+const Favorite = () => {
+  const [favorite, setFavorite] = useState();
 
-  const getFoodData = () => {
-    const headers = localStorage.getItem("token")
-      ? {
-          apiKey: `${process.env.REACT_APP_APIKEY}`,
-          Authorization: `Bearer ${localStorage.getItem(`token`)}`,
-        }
-      : { apiKey: `${process.env.REACT_APP_APIKEY}`, };
+  const getLikeFood = () => {
     axios({
       method: "get",
-      url: "https://api-bootcamp.do.dibimbing.id/api/v1/foods",
-      headers: headers,
-    })
-      .then((response) => {
-        console.log(response);
-        setFood(response.data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-        alert("Error, try reloading the page");
-      });
+      url: "https://api-bootcamp.do.dibimbing.id/api/v1/like-foods",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        apiKey: `${process.env.REACT_APP_APIKEY}`,
+      },
+    }).then((response) => {
+      console.log(response);
+      setFavorite(response.data.data);
+    }).catch((error) => {
+      console.log(error);
+    });
   };
 
   useEffect(() => {
-    getFoodData();
+    getLikeFood();
   }, []);
-
+  
   const handleLike = (id, isLike) => {
     if (!isLike) {
       axios({
@@ -45,14 +38,11 @@ const Home = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           apiKey: `${process.env.REACT_APP_APIKEY}`,
         },
-      })
-        .then((response) => {
-          console.log(response);
-          getFoodData();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      }).then((response) => {
+        console.log(response);
+      }).catch((error) => {
+        console.log(error);
+      });
     } else {
       axios({
         method: "post",
@@ -64,25 +54,22 @@ const Home = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           apiKey: `${process.env.REACT_APP_APIKEY}`,
         },
-      })
-        .then((response) => {
-          console.log(response);
-          getFoodData();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      }).then((response) => {
+        console.log(response);
+      }).catch((error) => {
+        console.log(error);
+      });
     }
+    getLikeFood();
   };
-
+  
   return (
     <>
-      <Carousel />
       <section className="container-fluid py-5">
-        <h1 className="title text-center">Explore Our Recipes</h1>
+        <h1 className="title text-center">My Favorite</h1>
         <div className="row row-cols row-cols-md-3 row-cols-lg-5 g-4 mt-3 mx-lg-5 mx-4">
-          {food &&
-            food.map((r) => {
+          {favorite &&
+            favorite.map((r) => {
               return (
                 <>
                   <div className="card-group gy-0" key={r.id}>
@@ -132,11 +119,11 @@ const Home = () => {
                   </div>
                 </>
               );
-          })}
+            })}
         </div>
       </section>
     </>
   );
-};
+}
 
-export default Home;
+export default Favorite
