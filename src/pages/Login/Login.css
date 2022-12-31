@@ -4,6 +4,14 @@
   font-family: 'Spline Sans', sans-serif;
 }
 
+.background {
+  background-image: url("../../assets/login.webp");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 550px;
+}
+
 .sign-card {
   max-width: 420px;
 }

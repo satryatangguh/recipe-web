@@ -98,12 +98,7 @@ const Home = () => {
                         </h5>
                         <div className="d-flex align-items-center mt-auto">
                           <span className="text-muted d-flex align-items-center me-3 rate">
-                            <Link
-                              style={{ textDecoration: "none" }}
-                              to={`/rating/${r.id}`}
-                            >
-                              <i className="ri-star-fill me-1"></i>
-                            </Link>
+                            <i className="ri-star-fill me-1"></i>
                             {r.rating}
                           </span>
                           <span className="text-muted d-flex align-items-center rate">

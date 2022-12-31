@@ -52,8 +52,8 @@ const Login = () => {
 
   return (
     <>
-      <section className="container-fluid py-5">
-        <div className="card mx-auto shadow sign-card p-3">
+      <section className="container-fluid background d-flex align-items-center">
+        <div className="card mx-auto shadow sign-card p-3 align">
           <div className="card-body">
             <h2 className="title text-center">Log in</h2>
             <form onSubmit={formLogin.handleSubmit} className="sign-in-form">
@@ -93,9 +93,13 @@ const Login = () => {
                   className="btn btn-success w-100"
                 />
               </div>
-              <p className="fw-bold text-center">Not Registered Yet?
+              <p className="fw-bold text-center">
+                Not Registered Yet?
                 <span className="ms-1">
-                  <Link className="text-decoration-none text-success" to="/register">
+                  <Link
+                    className="text-decoration-none text-success"
+                    to="/register"
+                  >
                     Create an Account
                   </Link>
                 </span>

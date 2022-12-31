@@ -4,14 +4,38 @@
   font-family: 'Spline Sans', sans-serif;
 }
 
-.food-detail {
-  max-width: 600px;
-}
-
 .img-food {
   height: 180px;
   width: 180px;
   object-fit: cover;
+}
+
+.img-food-rate {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #376822;
+}
+
+.food-detail, .list-review, .text-review {
+  max-width: 600px;
+}
+
+.card-footer .card-footer-text {
+  font-size: 13px;
+}
+
+.img-profile {
+  object-fit: cover;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #509E2F;
+}
+
+.review-name {
+  font-size: 13px;
 }
 
 .ri-star-fill {
@@ -24,11 +48,19 @@
   color: #FF0000;
 }
 
+.ri-award-line {
+  font-size: 22px;
+}
+
+.review-comment p{
+  font-size: 12px;
+}
+
 .rate {
   font-size: 14px;
 }
 
-@media (max-width: 576px){
+@media (max-width: 576px) {
   .img-food {
     height: 500px;
     width: 500px;

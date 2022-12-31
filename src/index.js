@@ -10,7 +10,6 @@ import Footer from './components/Footer/Footer';
 // Import Pages
 import Home from './pages/Home/Home';
 import Detail from './pages/Detail/Detail';
-import Rating from './pages/Rating/Rating';
 import Favorite from './pages/Favorite/Favorite';
 import Login from './pages/Login/Login';
 
@@ -31,11 +30,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/rating/:foodID",
-        element: <Rating />,
-      },
-      {
-        path: "/detail/:id",
+        path: "/detail/:foodID",
         element: <Detail />,
       },
       {
