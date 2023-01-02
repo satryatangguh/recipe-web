@@ -25,3 +25,19 @@
   border-top-left-radius: 0%;
   border-bottom-left-radius: 0%;
 }
+
+@media (max-width: 576px) {
+  .label-register{
+    font-size: 12px;
+  }
+
+  .fs-12px {
+    font-size: 12px;
+    height: 30px;
+    
+  }
+
+
+
+}
+

@@ -102,7 +102,7 @@ const Detail = () => {
                   />
                 </div>
                 <div className="col-lg-8 col-md-8 col-sm-8">
-                  <h2 className="card-title fs-4 mb-3">{food && food.name}</h2>
+                  <h2 className="card-title fs-4 mb-3 text-capitalize">{food && food.name}</h2>
                   <div className="d-flex gap-2 mb-1">
                     <i className="ri-file-list-line"></i>
                     <p className="card-text">

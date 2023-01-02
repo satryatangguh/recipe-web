@@ -71,8 +71,8 @@ const Favorite = () => {
           {favorite &&
             favorite.map((r) => {
               return (
-                <>
-                  <div className="card-group gy-0" key={r.id}>
+                <React.Fragment key={r.id}>
+                  <div className="card-group gy-0">
                     <div className="card mh-100 shadow mt-4">
                       <img
                         src={r.imageUrl}
@@ -112,7 +112,7 @@ const Favorite = () => {
                       </div>
                     </div>
                   </div>
-                </>
+                </React.Fragment>
               );
             })}
         </div>

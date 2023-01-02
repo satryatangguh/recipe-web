@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import "../Register/Register.css";
@@ -56,13 +55,15 @@ const Register = () => {
             <form onSubmit={formSignup.handleSubmit}>
               <div className="row mb-2">
                 <div className="col-6">
-                  <label className="form-label fw-bold mb-0">Username</label>
+                  <label className="form-label fw-bold mb-0 label-register">
+                    Username
+                  </label>
                   <input
                     id="name"
                     name="name"
                     type="text"
                     placeholder="Enter Username"
-                    className="form-control"
+                    className="form-control fs-12px"
                     onChange={formSignup.handleChange}
                     onBlur={formSignup.handleBlur}
                     value={formSignup.values.name}
@@ -72,13 +73,15 @@ const Register = () => {
                   ) : null}
                 </div>
                 <div className="col-6">
-                  <label className="form-label fw-bold mb-0">Email</label>
+                  <label className="form-label fw-bold mb-0 label-register">
+                    Email
+                  </label>
                   <input
                     id="email"
                     name="email"
                     type="email"
                     placeholder="Email"
-                    className="form-control"
+                    className="form-control fs-12px"
                     onChange={formSignup.handleChange}
                     onBlur={formSignup.handleBlur}
                     value={formSignup.values.email}
@@ -92,13 +95,15 @@ const Register = () => {
 
               <div className="row mb-2">
                 <div className="col-6">
-                  <label className="form-label fw-bold mb-0">Password</label>
+                  <label className="form-label fw-bold mb-0 label-register">
+                    Password
+                  </label>
                   <input
                     id="password"
                     name="password"
                     type="password"
                     placeholder="Enter Password"
-                    className="form-control"
+                    className="form-control fs-12px"
                     onChange={formSignup.handleChange}
                     onBlur={formSignup.handleBlur}
                     value={formSignup.values.password}
@@ -109,7 +114,7 @@ const Register = () => {
                   ) : null}
                 </div>
                 <div className="col-6">
-                  <label className="form-label fw-bold mb-0">
+                  <label className="form-label fw-bold mb-0 label-register">
                     Confirm Password
                   </label>
                   <input
@@ -117,7 +122,7 @@ const Register = () => {
                     name="passwordRepeat"
                     type="password"
                     placeholder="Confirm Password"
-                    className="form-control"
+                    className="form-control fs-12px"
                     onChange={formSignup.handleChange}
                     onBlur={formSignup.handleBlur}
                     value={formSignup.values.passwordRepeat}
@@ -132,13 +137,15 @@ const Register = () => {
 
               <div className="row mb-2">
                 <div className="col-6">
-                  <label className="form-label fw-bold mb-0">Phone</label>
+                  <label className="form-label fw-bold mb-0 label-register">
+                    Phone
+                  </label>
                   <input
                     id="phoneNumber"
                     name="phoneNumber"
                     type="text"
                     placeholder="Enter Phone Number"
-                    className="form-control"
+                    className="form-control fs-12px"
                     onChange={formSignup.handleChange}
                     onBlur={formSignup.handleBlur}
                     value={formSignup.values.phoneNumber}
@@ -150,7 +157,9 @@ const Register = () => {
                   ) : null}
                 </div>
                 <div className="col-6">
-                  <label className="form-label fw-bold mb-0">Select Role</label>
+                  <label className="form-label fw-bold mb-0 label-register">
+                    Select Role
+                  </label>
                   <select
                     onChange={formSignup.handleChange}
                     onBlur={formSignup.handleBlur}
@@ -159,9 +168,9 @@ const Register = () => {
                     id="role"
                     name="role"
                     multiple={false}
-                    className="form-select"
+                    className="form-select fs-12px"
                   >
-                    <option value="">Select a Role</option>
+                    <option value="">Select Role</option>
                     <option value="admin">Admin</option>
                     <option value="user">User</option>
                   </select>
@@ -169,14 +178,18 @@ const Register = () => {
               </div>
 
               <div className="row mb-2">
-                <label className="form-label fw-bold mb-0">Photo Profile</label>
+                <label className="form-label fw-bold mb-0 label-register">
+                  Photo Profile
+                </label>
                 <div className="d-flex">
                   <input
-                    className="form-control file-upload"
+                    className="form-control file-upload fs-12px"
                     type="file"
                     id="formFile"
                   />
-                  <button className="btn btn-success btn-upload">Upload</button>
+                  <button className="btn btn-success btn-upload fs-12px">
+                    Upload
+                  </button>
                 </div>
               </div>
 
@@ -184,7 +197,7 @@ const Register = () => {
                 <input
                   type="submit"
                   value="Register"
-                  className="btn btn-success"
+                  className="btn btn-success fs-12px"
                 />
               </div>
             </form>
