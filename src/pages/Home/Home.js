@@ -25,7 +25,7 @@ const Home = () => {
       })
       .catch((error) => {
         console.error(error);
-        alert("Error, try reloading the page");
+        alert("Error, reload the page!");
       });
   };
 

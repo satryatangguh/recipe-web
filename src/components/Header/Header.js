@@ -101,7 +101,7 @@ const Header = () => {
                     >
                       {username}
                     </a>
-                    <ul className="dropdown-menu">
+                    <ul className="dropdown-menu dropdown-menu-end">
                       <li>
                         <Link
                           className="dropdown-item fw-bold text-dark"

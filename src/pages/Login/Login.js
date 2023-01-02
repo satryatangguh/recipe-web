@@ -28,7 +28,6 @@ const Login = () => {
         },
       })
         .then((Response) => {
-          alert("Login success, welcome to Cookpedia!");
           const token = Response.data.token;
           localStorage.setItem("token", token);
 
@@ -44,7 +43,7 @@ const Login = () => {
         })
         .catch((error) => {
           console.log(error);
-          alert("Login Failed! Please, Check Email and Password !!");
+          alert("The password that you've entered is incorrect. Try again.");
         });
     },
   });
@@ -53,12 +52,12 @@ const Login = () => {
   return (
     <>
       <section className="container-fluid background d-flex align-items-center">
-        <div className="card mx-auto shadow sign-card p-3 align">
+        <div className="card mx-auto shadow sign-card py-3 px-2">
           <div className="card-body">
-            <h2 className="title text-center">Log in</h2>
-            <form onSubmit={formLogin.handleSubmit} className="sign-in-form">
-              <div className="mb-3">
-                <label className="form-label fw-bold mt-1">Username</label>
+            <h2 className="title text-center mb-4">Log in</h2>
+            <form onSubmit={formLogin.handleSubmit}>
+              <div className="mb-2">
+                <label className="form-label fw-bold mb-0">Email</label>
                 <input
                   id="email"
                   name="email"
@@ -73,8 +72,8 @@ const Login = () => {
                   <div>{formLogin.errors.email}</div>
                 ) : null}
               </div>
-              <div className="mb-3">
-                <label className="form-label fw-bold mt-1">Password</label>
+              <div className="mb-2">
+                <label className="form-label fw-bold mb-0">Password</label>
                 <input
                   id="password"
                   name="password"
@@ -86,7 +85,7 @@ const Login = () => {
                   placeholder="Password"
                 />
               </div>
-              <div className="mb-3">
+              <div className="my-3">
                 <input
                   type="submit"
                   value="Login"

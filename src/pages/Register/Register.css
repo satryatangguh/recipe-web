@@ -4,7 +4,7 @@
   font-family: 'Spline Sans', sans-serif;
 }
 
-.background {
+.background-sign-up {
   background-image: url("../../assets/login.webp");
   background-position: top;
   background-repeat: no-repeat;
@@ -12,6 +12,16 @@
   height: 550px;
 }
 
-.sign-card {
-  width: 420px;
+.sign-up-card {
+  width: 780px;
+}
+
+.file-upload {
+  border-bottom-right-radius: 0%;
+  border-top-right-radius: 0%;
+}
+
+.btn-upload {
+  border-top-left-radius: 0%;
+  border-bottom-left-radius: 0%;
 }
