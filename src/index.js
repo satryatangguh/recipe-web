@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import Detail from './pages/Detail/Detail';
 import Favorite from './pages/Favorite/Favorite';
+import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/favorite",
         element: <Favorite />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
       {
         path: "/login",

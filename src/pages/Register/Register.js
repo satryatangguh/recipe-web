@@ -1,14 +1,51 @@
-import React, { useState } from "react";
+import React, {useState, useRef} from "react";
 import axios from "axios";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import "../Register/Register.css";
 
 const Register = () => {
-  const [image, setImage] = useState("https://fakeimg.pl/350x200/");
-  const [saveImage, setSaveImage] = useState(null);
+  const [saveImage, setSaveImage] = useState("");
+  const fileUpload = useRef(null);
 
-  // function
+  function handleChangeUploadImage(e) {
+    console.log(e.target.files[0]);
+    let uploaded = e.target.files[0];
+    setSaveImage(uploaded);
+  }
+
+  function handleSave() {
+    if (!saveImage) {
+      alert("please upload a image first");
+    } else {
+      console.log(fileUpload.current.files[0]);
+      let formData = new FormData();
+      formData.append("image", saveImage);
+
+      let configurasi = {
+        headers: {
+          apiKey: `${process.env.REACT_APP_APIKEY}`,
+          Authorization: `Bearer${localStorage.getItem("token")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      axios
+        .post(
+          "https://api-bootcamp.do.dibimbing.id/api/v1/upload-image",
+          formData,
+          configurasi
+        )
+        .then((response) => {
+          console.log(response);
+          alert("Upload Picture successful !!");
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Upload Picture Failed !!");
+        });
+    }
+  }
 
   const formSignup = useFormik({
     initialValues: {
@@ -34,13 +71,16 @@ const Register = () => {
           passwordRepeat: values.passwordRepeat,
           role: values.role,
           phoneNumber: values.phoneNumber,
+          profilePictureUrl: values.profilePictureUrl,
         },
       })
         .then((response) => {
+          console.log(response);
           alert("Registration Success!");
           window.location.reload();
         })
         .catch((error) => {
+          console.log(error);
           alert("Registration failed. Try Again!");
         });
     },
@@ -183,11 +223,17 @@ const Register = () => {
                 </label>
                 <div className="d-flex">
                   <input
-                    className="form-control file-upload fs-12px"
                     type="file"
+                    className="form-control file-upload fs-12px"
                     id="formFile"
+                    accept="image/*"
+                    ref={fileUpload}
+                    onChange={handleChangeUploadImage}
                   />
-                  <button className="btn btn-success btn-upload fs-12px">
+                  <button
+                    onClick={handleSave}
+                    className="btn btn-success btn-upload fs-12px"
+                  >
                     Upload
                   </button>
                 </div>

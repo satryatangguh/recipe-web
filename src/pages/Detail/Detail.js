@@ -16,7 +16,6 @@ const Detail = () => {
       method: "get",
       url: `https://api-bootcamp.do.dibimbing.id/api/v1/foods/${foodID}`,
       headers: {
-        // Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
     })
@@ -91,7 +90,10 @@ const Detail = () => {
     <>
       <section className="container-fluid py-5">
         <div className="mx-auto food-detail">
-          <div className="card mb-3 shadow">
+          <h1 className="title text-center text-capitalize">
+            {food && food.name} details
+          </h1>
+          <div className="card my-3 shadow">
             <div className="card-body">
               <div className="row g-2">
                 <div className="col-lg-4 col-md-4 col-sm-4">
@@ -102,7 +104,9 @@ const Detail = () => {
                   />
                 </div>
                 <div className="col-lg-8 col-md-8 col-sm-8">
-                  <h2 className="card-title fs-4 mb-3 text-capitalize">{food && food.name}</h2>
+                  <h2 className="card-title text-center text-sm-start text-capitalize fs-4 mb-3">
+                    {food && food.name}
+                  </h2>
                   <div className="d-flex gap-2 mb-1">
                     <i className="ri-file-list-line"></i>
                     <p className="card-text">
@@ -186,10 +190,10 @@ const Detail = () => {
                         />
                       </div>
                       <form onSubmit={(e) => handleSubmit(e, food.id)}>
-                        <div className="row">
-                          <div className="col-lg-12 mb-3">
+                        <div className="row mb-3">
+                          <div className="col-lg-12">
                             <label
-                              forhtml="inputName"
+                              htmlFor="inputName"
                               className="form-label fw-bold mb-1"
                             >
                               Rating
@@ -204,9 +208,11 @@ const Detail = () => {
                               placeholder="Rate this food (1-5)"
                             />
                           </div>
+                        </div>
+                        <div className="row mb-3">
                           <div className="col-lg-12">
                             <label
-                              forhtml="inputName"
+                              htmlFor="inputName"
                               className="form-label fw-bold mb-1"
                             >
                               Review
@@ -221,14 +227,14 @@ const Detail = () => {
                               placeholder="Review this food"
                             />
                           </div>
-                          <div className="text-start mt-3">
-                            <button
-                              type="submit"
-                              className="btn text-light shadow btn-success"
-                            >
-                              Submit
-                            </button>
-                          </div>
+                        </div>
+                        <div className="text-start mt-3">
+                          <button
+                            type="submit"
+                            className="btn text-light shadow btn-success"
+                          >
+                            Submit
+                          </button>
                         </div>
                       </form>
                     </div>
