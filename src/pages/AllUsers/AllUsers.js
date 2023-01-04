@@ -16,7 +16,7 @@ const AllUsers = () => {
         apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
     }).then((response) => {
-      console.log(response.data);
+      console.log(response.data.data);
       setUsers(response.data.data);
     }).catch((error) => {
       console.log(error);
@@ -49,14 +49,21 @@ const AllUsers = () => {
       })
       .catch((error) => {
         console.log(error);
+        alert("Please select a role from select form.");
       });
   }
 
   const formik = useFormik({
     initialValues: {
-      role: "",
+      role: users && users.role,
     },
-    validationSchema: Yup.object({}),
+    enableReinitialize: true,
+    validationSchema: Yup.object({
+      role: Yup.string().oneOf(
+        ["admin", "user"],
+        "Invalid role"
+      )
+    }),
   });
 
   return (

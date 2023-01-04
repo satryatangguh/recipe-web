@@ -27,14 +27,14 @@ const Login = () => {
           password: values.password,
         },
       })
-        .then((Response) => {
-          const token = Response.data.token;
+        .then((response) => {
+          const token = response.data.token;
           localStorage.setItem("token", token);
 
-          const role = Response.data.user.role;
+          const role = response.data.user.role;
           localStorage.setItem("role", role);
 
-          const name = Response.data.user.name;
+          const name = response.data.user.name;
           localStorage.setItem("name", name);
 
           const email = values.email;

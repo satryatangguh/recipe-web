@@ -81,8 +81,8 @@ const Header = () => {
               {localStorage.getItem("role") === "admin" ? (
                 <>
                   <li className="nav-item ">
-                    <Link className="nav-link fw-bold text-dark" to="/add-food">
-                      Add Food
+                    <Link className="nav-link fw-bold text-dark" to="/food-list">
+                      Food List
                     </Link>
                   </li>
                 </>

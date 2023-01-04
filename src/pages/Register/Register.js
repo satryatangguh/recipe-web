@@ -234,7 +234,7 @@ const Register = () => {
                     onClick={handleSave}
                     className="btn btn-success btn-upload fs-12px"
                   >
-                    Upload
+                    <i className="ri-upload-2-line"></i>
                   </button>
                 </div>
               </div>

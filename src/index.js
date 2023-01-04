@@ -15,6 +15,7 @@ import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import AllUsers from './pages/AllUsers/AllUsers';
+import FoodList from './pages/FoodList/FoodList';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/all-users",
         element: <AllUsers />,
+      },
+      {
+        path: "/food-list",
+        element: <FoodList />,
       },
     ],
   },

@@ -55,10 +55,11 @@ const Profile = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      phoneNumber: "",
+      name: profile && profile.name,
+      email: profile && profile.email,
+      phoneNumber: profile && profile.phoneNumber,
     },
+    enableReinitialize: true,
     validationSchema: Yup.object({
       name: Yup.string().required("Required"),
       email: Yup.string().required("Required"),
