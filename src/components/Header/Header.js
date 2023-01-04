@@ -114,7 +114,7 @@ const Header = () => {
                         <li>
                           <Link
                             className="dropdown-item fw-bold text-dark"
-                            to="/alluser"
+                            to="/all-users"
                           >
                             All user
                           </Link>

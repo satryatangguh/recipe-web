@@ -65,8 +65,8 @@ const Detail = () => {
         review: values.review,
       },
     })
-      .then((res) => {
-        console.log(res);
+      .then((response) => {
+        console.log(response);
         getRating();
         window.location.reload();
       })

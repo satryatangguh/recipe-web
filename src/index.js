@@ -14,6 +14,7 @@ import Favorite from './pages/Favorite/Favorite';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import AllUsers from './pages/AllUsers/AllUsers';
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/all-users",
+        element: <AllUsers />,
       },
     ],
   },

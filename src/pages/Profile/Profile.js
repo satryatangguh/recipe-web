@@ -17,7 +17,7 @@ const Profile = () => {
         apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
     }).then((response) => {
-      console.log(response);
+      console.log(response.data.user);
       setProfile(response.data.user);
     }).catch((error) => {
       console.log(error);
@@ -46,28 +46,8 @@ const Profile = () => {
       },
     }).then((response) => {
       console.log(response);
-      axios({
-        method: "post",
-        url: `https://api-bootcamp.do.dibimbing.id/api/v1/update-user-role/${
-          profile && profile.id
-        }`,
-        headers: {
-          apiKey: `${process.env.REACT_APP_APIKEY}`,
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-          role: values.role,
-        },
-      })
-        .then((response) => {
-          console.log(response);
-          localStorage.setItem("role", values.role);
-          alert("Update Profile Success!");
-          window.location.reload();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      getProfile();
+      window.location.reload();
     }).catch((error) => {
       console.log(error);
     });

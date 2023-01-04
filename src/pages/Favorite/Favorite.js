@@ -65,7 +65,7 @@ const Favorite = () => {
   
   return (
     <>
-      <section className="container-fluid py-5">
+      <section className="container-fluid py-5 min-vh-100">
         <h1 className="title text-center">My Favorite</h1>
         <div className="row row-cols row-cols-md-3 row-cols-lg-5 g-4 mt-3 mx-lg-5 mx-4">
           {favorite &&
