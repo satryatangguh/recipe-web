@@ -108,8 +108,8 @@ const Register = () => {
                     onBlur={formSignup.handleBlur}
                     value={formSignup.values.name}
                   />
-                  {formSignup.touched.username && formSignup.errors.username ? (
-                    <div>{formSignup.errors.username}</div>
+                  {formSignup.touched.name && formSignup.errors.name ? (
+                    <div>{formSignup.errors.name}</div>
                   ) : null}
                 </div>
                 <div className="col-6">

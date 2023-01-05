@@ -91,11 +91,11 @@ const AllUsers = () => {
                           {r.email}
                         </p>
                       </div>
-                      <div className="d-flex gap-2 d-flex align-items-center">
+                      <div className="d-flex gap-2 align-items-center">
                         <i className="ri-phone-fill fs-5"></i>
                         <p className="card-text  font-12px">{r.phoneNumber}</p>
                       </div>
-                      <div className="d-flex gap-2 d-flex align-items-center">
+                      <div className="d-flex gap-2 align-items-center">
                         <i className="ri-account-circle-fill fs-5"></i>
                         <p className="card-text  font-12px">{r.role} account</p>
                       </div>
@@ -123,56 +123,30 @@ const AllUsers = () => {
                   <div className="modal-dialog">
                     <div className="modal-content p-3">
                       <div className="modal-body">
-                        <div className="text-center">
+                        <div className="text-center mb-3">
                           <h2 className="fs-3">Edit Role</h2>
                           <img
                             src={r.profilePictureUrl}
                             className="img-card-profile mx-auto mb-2"
                             alt={r.name}
                           />
-                          <h5 className="card-title text-center fs-5 mb-3">
+                          <h5 className="card-title text-center fs-5 mb-2">
                             {r.name}
                           </h5>
+                          <div className="d-flex gap-2 align-items-center justify-content-center">
+                            <i className="ri-mail-fill"></i>
+                            <p className="card-text font-12px text-truncate">
+                              {r.email}
+                            </p>
+                          </div>
+                          <div className="d-flex gap-2 align-items-center justify-content-center">
+                            <i className="ri-phone-fill fs-5"></i>
+                            <p className="card-text font-12px">
+                              {r.phoneNumber}
+                            </p>
+                          </div>
                         </div>
                         <form onSubmit={(e) => handleSubmit(e, r.id)}>
-                          <div className="row mb-3">
-                            <div className="col-lg-12">
-                              <label
-                                htmlFor="inputEmail"
-                                className="form-label fw-bold mb-1"
-                              >
-                                Email
-                              </label>
-                              <input
-                                className="form-control"
-                                type="text"
-                                value={r.email}
-                                aria-label="Disabled input example"
-                                disabled
-                                readOnly
-                              />
-                            </div>
-                          </div>
-
-                          <div className="row mb-3">
-                            <div className="col-lg-12">
-                              <label
-                                htmlFor="inputPhone"
-                                className="form-label fw-bold mb-1"
-                              >
-                                Phone Number
-                              </label>
-                              <input
-                                className="form-control"
-                                type="text"
-                                value={r.phoneNumber}
-                                aria-label="Disabled input example"
-                                disabled
-                                readOnly
-                              />
-                            </div>
-                          </div>
-
                           <div className="row mb-3">
                             <div className="col-lg-12">
                               <label
