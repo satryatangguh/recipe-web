@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import * as Yup from "yup";
-import { useFormik } from 'formik';
+import { useField, Formik, Form } from 'formik';
 import "../AllUsers/AllUsers.css";
 
 const AllUsers = () => {
@@ -28,12 +28,10 @@ const AllUsers = () => {
     getUsers();
   }, [])
   
-  const handleSubmit = (e, id) => {
-    e.preventDefault();
-    const values = formik.values;
+  const handleSubmit = (values) => {
     axios({
       method: "post",
-      url: `https://api-bootcamp.do.dibimbing.id/api/v1/update-user-role/${id}`,
+      url: `https://api-bootcamp.do.dibimbing.id/api/v1/update-user-role/${values.id}`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,
@@ -53,18 +51,20 @@ const AllUsers = () => {
       });
   }
 
-  const formik = useFormik({
-    initialValues: {
-      role: users && users.role,
-    },
-    enableReinitialize: true,
-    validationSchema: Yup.object({
-      role: Yup.string().oneOf(
-        ["admin", "user"],
-        "Invalid role"
-      )
-    }),
-  });
+  const SelectRole = ({ label, ...props }) => {
+    const [field, meta] = useField(props);
+    return (
+      <div className="row mb-3">
+        <div className="col-lg-12">
+          <label className="form-label fw-bold mb-1">{label}</label>
+          <select className="form-select" {...field} {...props} />
+          {meta.touched && meta.error ? (
+            <div className="error">{meta.error}</div>
+          ) : null}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -146,35 +146,33 @@ const AllUsers = () => {
                             </p>
                           </div>
                         </div>
-                        <form onSubmit={(e) => handleSubmit(e, r.id)}>
-                          <div className="row mb-3">
-                            <div className="col-lg-12">
-                              <label
-                                htmlFor="inputRole"
-                                className="form-label fw-bold mb-1"
-                              >
-                                Change a role
-                              </label>
-                              <select
-                                label="Role"
-                                name="role"
-                                className="form-select"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.role}
-                              >
-                                <option value="">Select a Role</option>
-                                <option value="admin">Admin</option>
-                                <option value="user">User</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div className="text-center mt-3">
-                            <button type="submit" className="btn btn-success">
-                              Save Change
-                            </button>
-                          </div>
-                        </form>
+                        <Formik
+                          initialValues={{
+                            role: r.role,
+                            id: r.id,
+                          }}
+                          enableReinitialize={true}
+                          validationSchema={Yup.object({
+                            role: Yup.string().oneOf(
+                              ["admin", "user"],
+                              "Select Role"
+                            ),
+                          })}
+                          onSubmit={handleSubmit}
+                        >
+                          <Form>
+                            <SelectRole label="Change Role" name="role">
+                              <option value="">Select Role</option>
+                              <option value="admin">Admin</option>
+                              <option value="user">User</option>
+                            </SelectRole>
+                            <div className="text-center mt-3">
+                              <button type="submit" className="btn btn-success">
+                                Save Change
+                              </button>
+                            </div> 
+                          </Form>
+                        </Formik>
                       </div>
                     </div>
                   </div>

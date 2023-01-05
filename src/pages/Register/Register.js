@@ -1,51 +1,12 @@
-import React, {useState, useRef} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import "../Register/Register.css";
+import ImageForm from "../../components/ImageForm/ImageForm";
 
 const Register = () => {
-  const [saveImage, setSaveImage] = useState("");
-  const fileUpload = useRef(null);
-
-  function handleChangeUploadImage(e) {
-    console.log(e.target.files[0]);
-    let uploaded = e.target.files[0];
-    setSaveImage(uploaded);
-  }
-
-  function handleSave() {
-    if (!saveImage) {
-      alert("please upload a image first");
-    } else {
-      console.log(fileUpload.current.files[0]);
-      let formData = new FormData();
-      formData.append("image", saveImage);
-
-      let configurasi = {
-        headers: {
-          apiKey: `${process.env.REACT_APP_APIKEY}`,
-          Authorization: `Bearer${localStorage.getItem("token")}`,
-          "Content-Type": "multipart/form-data",
-        },
-      };
-
-      axios
-        .post(
-          "https://api-bootcamp.do.dibimbing.id/api/v1/upload-image",
-          formData,
-          configurasi
-        )
-        .then((response) => {
-          console.log(response);
-          alert("Upload Picture successful !!");
-        })
-        .catch((error) => {
-          console.error(error);
-          alert("Upload Picture Failed !!");
-        });
-    }
-  }
+  const [uploadImage, setUploadImage] = useState("")
 
   const formSignup = useFormik({
     initialValues: {
@@ -55,8 +16,22 @@ const Register = () => {
       passwordRepeat: "",
       role: "",
       phoneNumber: "",
+      
     },
-    validationSchema: Yup.object({}),
+    validationSchema: Yup.object({
+      name: Yup.string().required("Required"),
+      email: Yup.string().email("Invalid Email address").required("Required"),
+      password: Yup.string()
+        .min(8, "Must be 8 characters or more")
+        .matches(/^.*(?=.*\d)((?=.*[a-zA-Z]){1}).*$/, "Password must consist letter and a number")
+        .required("Required"),
+      passwordRepeat: Yup.string()
+        .oneOf([Yup.ref("password")], "Password does not match")
+        .required("Required"),
+      role: Yup.string().oneOf(["admin", "user"], "Select Role").required("Required"),
+      phoneNumber: Yup.string().matches(/^[0-9]{10,12}$/, "Must be in digit").required("Required"),
+    }),
+
     onSubmit: (values) => {
       axios({
         method: "post",
@@ -71,7 +46,7 @@ const Register = () => {
           passwordRepeat: values.passwordRepeat,
           role: values.role,
           phoneNumber: values.phoneNumber,
-          profilePictureUrl: values.profilePictureUrl,
+          profilePictureUrl: uploadImage,
         },
       })
         .then((response) => {
@@ -88,11 +63,11 @@ const Register = () => {
 
   return (
     <>
-      <section className="container-fluid background-sign-up d-flex align-items-center">
+      <section className="container-fluid background-sign-up d-flex align-items-center py-5">
         <div className="card mx-auto shadow sign-up-card py-3 px-2">
           <div className="card-body">
             <h2 className="title text-center mb-4">Sign Up</h2>
-            <form onSubmit={formSignup.handleSubmit}>
+            <form onSubmit= {formSignup.handleSubmit}>
               <div className="row mb-2">
                 <div className="col-6">
                   <label className="form-label fw-bold mb-0 label-register">
@@ -218,25 +193,7 @@ const Register = () => {
               </div>
 
               <div className="row mb-2">
-                <label className="form-label fw-bold mb-0 label-register">
-                  Photo Profile
-                </label>
-                <div className="d-flex">
-                  <input
-                    type="file"
-                    className="form-control file-upload fs-12px"
-                    id="formFile"
-                    accept="image/*"
-                    ref={fileUpload}
-                    onChange={handleChangeUploadImage}
-                  />
-                  <button
-                    onClick={handleSave}
-                    className="btn btn-success btn-upload fs-12px"
-                  >
-                    <i className="ri-upload-2-line"></i>
-                  </button>
-                </div>
+                <ImageForm onChange={ (value) => setUploadImage(value)} />
               </div>
 
               <div className="mt-3">

@@ -51,7 +51,7 @@ const Login = () => {
 
   return (
     <>
-      <section className="container-fluid background d-flex align-items-center">
+      <section className="container-fluid background d-flex align-items-center py-5">
         <div className="card mx-auto shadow sign-card py-3 px-2">
           <div className="card-body">
             <h2 className="title text-center mb-4">Log in</h2>
