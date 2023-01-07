@@ -193,7 +193,7 @@ const Register = () => {
               </div>
 
               <div className="row mb-2">
-                <ImageForm onChange={ (value) => setUploadImage(value)} />
+                <ImageForm onChange={(value) => setUploadImage(value)} />
               </div>
 
               <div className="mt-3">

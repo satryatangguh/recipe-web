@@ -14,7 +14,7 @@ const ImageForm = ({ onChange }) => {
 
   function handleSave() {
     if (!saveImage) {
-      alert("please upload a image first");
+      alert("Image file required!");
     } else {
       console.log(fileUpload.current.files[0]);
       let formData = new FormData();
@@ -30,10 +30,11 @@ const ImageForm = ({ onChange }) => {
 
       axios
         .post("https://api-bootcamp.do.dibimbing.id/api/v1/upload-image", formData, config)
-        .then(function(response) {
+        .then(function (response) {
+          console.log(response);
           onChange(response.data.url);
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.error(error);
         })
         .then((response) => {
@@ -64,6 +65,8 @@ const ImageForm = ({ onChange }) => {
         <button
           onClick={handleSave}
           className="btn btn-success btn-upload fs-12px"
+          id="inputGroupFileAddon04"
+          type="button"
         >
           <i className="ri-upload-2-line"></i>
         </button>
