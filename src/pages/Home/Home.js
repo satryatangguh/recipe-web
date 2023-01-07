@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Home/Home.css";
 import Carousel from "../../components/Carousel/Carousel";
+import About from "../../components/About/About";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -78,6 +79,7 @@ const Home = () => {
   return (
     <>
       <Carousel />
+      <About />
       <section className="container-fluid py-5 min-vh-100">
         <h1 className="title text-center">Explore Our Recipes</h1>
         <div className="row row-cols row-cols-md-3 row-cols-lg-5 g-4 mt-3 mx-lg-5 mx-4">
