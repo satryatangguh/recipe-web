@@ -1,12 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import axios from "axios";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import "../Register/Register.css";
-import ImageForm from "../../components/ImageForm/ImageForm";
 
 const Register = () => {
-  const [uploadImage, setUploadImage] = useState("")
 
   const formSignup = useFormik({
     initialValues: {
@@ -46,7 +44,6 @@ const Register = () => {
           passwordRepeat: values.passwordRepeat,
           role: values.role,
           phoneNumber: values.phoneNumber,
-          profilePictureUrl: uploadImage,
         },
       })
         .then((response) => {
@@ -190,10 +187,6 @@ const Register = () => {
                     <option value="user">User</option>
                   </select>
                 </div>
-              </div>
-
-              <div className="row mb-2">
-                <ImageForm onChange={(value) => setUploadImage(value)} />
               </div>
 
               <div className="mt-3">
