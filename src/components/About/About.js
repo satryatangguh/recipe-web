@@ -19,9 +19,7 @@ const About = () => {
             <h1 className="title text-start">About us</h1>
             <div className="mt-3">
               <p className="about-lh">
-                Cookpedia is a community website built by and for kitchen
-                enthusiast. Most importantly, Cookpedia connects home cooks with
-                their sources of inspiration to other home cooks.
+                Cookpedia is a website built by and for kitchen enthusiast. Most importantly, Cookpedia connects home cooks with their sources of inspiration to other home cooks.
               </p>
               <p className="about-lh">
                 Cookpedia changed the food world by providing tools to share
@@ -30,18 +28,17 @@ const About = () => {
                 and ratings.
               </p>
             </div>
-            <button
-              type="button"
-              className="btn btn-success shadow d-flex align-items-center p-3"
+            <Link
+              style={{ textDecoration: "none" }}
+              to="/our-recipes"
             >
-              <Link
-                style={{ textDecoration: "none" }}
-                className="text-light"
-                to="/our-recipes"
+              <button
+                type="button"
+                className="btn btn-success shadow d-flex align-items-center p-3"
               >
                 Explore Our Recipes
-              </Link>
-            </button>
+              </button>
+            </Link>
           </div>
         </div>
       </section>

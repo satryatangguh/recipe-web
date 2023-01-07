@@ -12,17 +12,6 @@
   height: 440px;
 }
 
-/* Intro text */
-.intro-text {
-  margin-bottom: 40px;
-  text-align: center;
-}
-
-.intro-text p {
-  max-width: 500px;
-  margin: 16px auto 0 auto;
-}
-
 .about-lh {
   line-height: 1.9;
 }

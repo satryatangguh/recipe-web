@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import logo from "../../assets/CPLogo.png";
+import logo from "../../assets/CPLogo.webp";
 import "../Header/Header.css";
 
 const Header = () => {
@@ -69,6 +69,16 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item ">
+                <Link className="nav-link fw-bold text-dark" to="/">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item ">
+                <Link className="nav-link fw-bold text-dark" to="/our-recipes">
+                  Our Recipes
+                </Link>
+              </li>
               {localStorage.getItem("token") ? (
                 <>
                   <li className="nav-item ">
@@ -81,7 +91,10 @@ const Header = () => {
               {localStorage.getItem("role") === "admin" ? (
                 <>
                   <li className="nav-item ">
-                    <Link className="nav-link fw-bold text-dark" to="/food-list">
+                    <Link
+                      className="nav-link fw-bold text-dark"
+                      to="/food-list"
+                    >
                       Food List
                     </Link>
                   </li>

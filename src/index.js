@@ -9,6 +9,7 @@ import Footer from './components/Footer/Footer';
 
 // Import Pages
 import Home from './pages/Home/Home';
+import OurRecipes from './pages/OurRecipes/OurRecipes';
 import Detail from './pages/Detail/Detail';
 import Favorite from './pages/Favorite/Favorite';
 import Profile from './pages/Profile/Profile';
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/our-recipes",
+        element: <OurRecipes />,
       },
       {
         path: "/detail/:foodID",
