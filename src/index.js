@@ -17,6 +17,8 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import AllUsers from './pages/AllUsers/AllUsers';
 import FoodList from './pages/FoodList/FoodList';
+import AddFood from './pages/AddFood/AddFood';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +30,7 @@ const router = createBrowserRouter([
         <Footer />
       </>
     ),
-    errorElement: <p>Page Not Found</p>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -43,14 +45,6 @@ const router = createBrowserRouter([
         element: <Detail />,
       },
       {
-        path: "/favorite",
-        element: <Favorite />,
-      },
-      {
-        path: "/profile",
-        element: <Profile />,
-      },
-      {
         path: "/login",
         element: <Login />,
       },
@@ -59,12 +53,39 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
+        path: "/favorite",
+        element: localStorage.getItem("token") ? <Favorite /> : <ErrorPage />,
+      },
+      {
+        path: "/profile",
+        element: localStorage.getItem("token") ? <Profile /> : <ErrorPage />,
+      },
+      {
         path: "/all-users",
-        element: <AllUsers />,
+        element:
+          localStorage.getItem("role") === "admin" ? (
+            <AllUsers />
+          ) : (
+            <ErrorPage />
+          ),
       },
       {
         path: "/food-list",
-        element: <FoodList />,
+        element:
+          localStorage.getItem("role") === "admin" ? (
+            <FoodList />
+          ) : (
+            <ErrorPage />
+          ),
+      },
+      {
+        path: "/add-food",
+        element:
+          localStorage.getItem("role") === "admin" ? (
+            <AddFood />
+          ) : (
+            <ErrorPage />
+          ),
       },
     ],
   },

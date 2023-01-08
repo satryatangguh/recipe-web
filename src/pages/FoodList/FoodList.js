@@ -32,19 +32,21 @@ const FoodList = () => {
   }, []);
 
   const deleteFood = (id) => {
-    axios({
-      method: "delete",
-      url: `https://api-bootcamp.do.dibimbing.id/api/v1/delete-food/${id}`,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        apiKey: `${process.env.REACT_APP_APIKEY}`,
-      },
-    }).then((response) => {
-      console.log(response);
-      getFoodData();
-    }).catch((error) => {
-      console.log(error);
-    });
+    if (window.confirm(`Are you sure want to delete this food?`)) {
+      axios({
+        method: "delete",
+        url: `https://api-bootcamp.do.dibimbing.id/api/v1/delete-food/${id}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          apiKey: `${process.env.REACT_APP_APIKEY}`,
+        },
+      }).then((response) => {
+        console.log(response);
+        getFoodData();
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
   }
 
   return (

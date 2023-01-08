@@ -98,6 +98,14 @@ const Header = () => {
                       Food List
                     </Link>
                   </li>
+                  <li className="nav-item ">
+                    <Link
+                      className="nav-link fw-bold text-dark"
+                      to="/add-food"
+                    >
+                      Add Food
+                    </Link>
+                  </li>
                 </>
               ) : null}
             </ul>
