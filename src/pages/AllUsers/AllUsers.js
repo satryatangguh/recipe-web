@@ -126,13 +126,21 @@ const AllUsers = () => {
                   aria-hidden="true"
                 >
                   <div className="modal-dialog">
-                    <div className="modal-content p-3">
-                      <div className="modal-body">
+                    <div className="modal-content">
+                      <div class="modal-header">
+                        <h5 className="modal-title">Edit Role</h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div className="modal-body p-4">
                         <div className="text-center mb-3">
-                          <h2 className="fs-3">Edit Role</h2>
                           <img
                             src={r.profilePictureUrl}
-                            className="img-card-profile mx-auto mb-2"
+                            className="img-card-profile mx-auto mb-3"
                             alt={r.name}
                           />
                           <h5 className="card-title text-center fs-5 mb-2">
@@ -175,7 +183,7 @@ const AllUsers = () => {
                               <button type="submit" className="btn btn-success">
                                 Save Change
                               </button>
-                            </div> 
+                            </div>
                           </Form>
                         </Formik>
                       </div>

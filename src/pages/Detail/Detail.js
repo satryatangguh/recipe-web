@@ -179,13 +179,21 @@ const Detail = () => {
                 aria-hidden="true"
               >
                 <div className="modal-dialog">
-                  <div className="modal-content p-3">
-                    <div className="modal-body">
+                  <div className="modal-content">
+                    <div class="modal-header">
+                      <h5 className="modal-title">Rate This Food</h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div className="modal-body p-4">
                       <div className="text-center">
-                        <h2 className="fs-3">Rate This Food</h2>
                         <img
                           src={food && food.imageUrl}
-                          className="img-fluid img-food-rate my-3"
+                          className="img-fluid img-food-rate mb-3"
                           alt={food && food.name}
                         />
                       </div>

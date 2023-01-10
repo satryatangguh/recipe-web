@@ -7,6 +7,8 @@ import ImageForm from "../../components/ImageForm/ImageForm";
 
 const Profile = () => {
   const [profile, setProfile] = useState();
+  
+  // eslint-disable-next-line
   const [uploadImage, setUploadImage] = useState("");
 
   const getProfile = () => {
@@ -46,7 +48,7 @@ const Profile = () => {
         name: values.name,
         email: values.email,
         phoneNumber: values.phoneNumber,
-        profilePictureUrl: uploadImage,
+        profilePictureUrl: values.profilePictureUrl,
       },
     })
       .then((response) => {
@@ -136,13 +138,21 @@ const Profile = () => {
             aria-hidden="true"
           >
             <div className="modal-dialog">
-              <div className="modal-content p-3">
-                <div className="modal-body">
+              <div className="modal-content">
+                <div class="modal-header">
+                  <h5 className="modal-title">Edit Profile</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body p-4">
                   <div className="text-center">
-                    <h2 className="fs-3">Edit Profile</h2>
                     <img
                       src={profile && profile.profilePictureUrl}
-                      className="img-fluid img-profile-page my-3"
+                      className="img-fluid img-profile-page mb-3"
                       alt={profile && profile.name}
                     />
                   </div>

@@ -7,6 +7,8 @@ import ImageForm from "../../components/ImageForm/ImageForm";
 
 const FoodList = () => {
   const [food, setFood] = useState();
+  
+  // eslint-disable-next-line
   const [uploadImage, setUploadImage] = useState("");
 
   const getFoodData = () => {
@@ -47,15 +49,17 @@ const FoodList = () => {
         name: values.name,
         description: values.description,
         ingredients: values.ingredients,
-        imageUrl: uploadImage,
+        imageUrl: values.imageUrl,
       },
-    }).then((response) => {
-      getFoodData();
-      window.location.reload();
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
+    })
+      .then((response) => {
+        getFoodData();
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const deleteFood = (id) => {
     if (window.confirm(`Are you sure want to delete this food?`)) {
@@ -66,21 +70,27 @@ const FoodList = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           apiKey: `${process.env.REACT_APP_APIKEY}`,
         },
-      }).then((response) => {
-        getFoodData();
-        
-      }).catch((error) => {
-        console.log(error);
-      });
+      })
+        .then((response) => {
+          getFoodData();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-  }
+  };
 
   const InputText = ({ label, ...props }) => {
     const [field, meta] = useField(props);
     return (
       <div className="row mb-3">
         <div className="col-lg-12">
-          <label className="form-label fw-bold mb-1" htmlFor={props.id || props.name}>{label}</label>
+          <label
+            className="form-label fw-bold mb-1"
+            htmlFor={props.id || props.name}
+          >
+            {label}
+          </label>
           <input className="form-control" {...field} {...props} />
           {meta.touched && meta.error ? (
             <div className="text-danger">{meta.error}</div>
@@ -147,11 +157,17 @@ const FoodList = () => {
                       aria-hidden="true"
                     >
                       <div className="modal-dialog">
-                        <div className="modal-content p-3">
-                          <div className="modal-body">
-                            <div className="text-center fs-3">
-                              <h2 className="fs-3">Update {r.name}</h2>
-                            </div>
+                        <div className="modal-content">
+                          <div class="modal-header">
+                            <h5 className="modal-title">Update {r.name}</h5>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div className="modal-body p-4">
                             <Formik
                               initialValues={{
                                 name: r.name,
