@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import "../Register/Register.css";
+import ImageForm from "../../components/ImageForm/ImageForm";
 
 const Register = () => {
+const [uploadImage, setUploadImage] = useState("");
 
   const formSignup = useFormik({
     initialValues: {
@@ -14,7 +16,6 @@ const Register = () => {
       passwordRepeat: "",
       role: "",
       phoneNumber: "",
-      
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Required"),
@@ -44,6 +45,7 @@ const Register = () => {
           passwordRepeat: values.passwordRepeat,
           role: values.role,
           phoneNumber: values.phoneNumber,
+          profilePictureUrl: uploadImage,
         },
       })
         .then((response) => {
@@ -64,7 +66,7 @@ const Register = () => {
         <div className="card mx-auto shadow sign-up-card py-3 px-2">
           <div className="card-body">
             <h2 className="title text-center mb-4">Sign Up</h2>
-            <form onSubmit= {formSignup.handleSubmit}>
+            <form onSubmit={formSignup.handleSubmit}>
               <div className="row mb-2">
                 <div className="col-6">
                   <label className="form-label fw-bold mb-0 label-register">
@@ -81,7 +83,7 @@ const Register = () => {
                     value={formSignup.values.name}
                   />
                   {formSignup.touched.name && formSignup.errors.name ? (
-                    <div>{formSignup.errors.name}</div>
+                    <div className="text-danger">{formSignup.errors.name}</div>
                   ) : null}
                 </div>
                 <div className="col-6">
@@ -100,7 +102,7 @@ const Register = () => {
                   />
 
                   {formSignup.touched.email && formSignup.errors.email ? (
-                    <div>{formSignup.errors.email}</div>
+                    <div className="text-danger">{formSignup.errors.email}</div>
                   ) : null}
                 </div>
               </div>
@@ -122,7 +124,9 @@ const Register = () => {
                   />
 
                   {formSignup.touched.password && formSignup.errors.password ? (
-                    <div>{formSignup.errors.password}</div>
+                    <div className="text-danger">
+                      {formSignup.errors.password}
+                    </div>
                   ) : null}
                 </div>
                 <div className="col-6">
@@ -142,7 +146,9 @@ const Register = () => {
 
                   {formSignup.touched.passwordRepeat &&
                   formSignup.errors.passwordRepeat ? (
-                    <div>{formSignup.errors.passwordRepeat}</div>
+                    <div className="text-danger">
+                      {formSignup.errors.passwordRepeat}
+                    </div>
                   ) : null}
                 </div>
               </div>
@@ -165,7 +171,9 @@ const Register = () => {
 
                   {formSignup.touched.phoneNumber &&
                   formSignup.errors.phoneNumber ? (
-                    <div>{formSignup.errors.phoneNumber}</div>
+                    <div className="text-danger">
+                      {formSignup.errors.phoneNumber}
+                    </div>
                   ) : null}
                 </div>
                 <div className="col-6">
@@ -188,6 +196,8 @@ const Register = () => {
                   </select>
                 </div>
               </div>
+              
+              <ImageForm onChange={(value) => setUploadImage(value)} />
 
               <div className="mt-3">
                 <input

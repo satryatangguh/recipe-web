@@ -56,10 +56,15 @@ const AllUsers = () => {
     return (
       <div className="row mb-3">
         <div className="col-lg-12">
-          <label className="form-label fw-bold mb-1">{label}</label>
+          <label
+            className="form-label fw-bold mb-1"
+            htmlFor={props.id || props.name}
+          >
+            {label}
+          </label>
           <select className="form-select" {...field} {...props} />
           {meta.touched && meta.error ? (
-            <div className="error">{meta.error}</div>
+            <div className="text-danger">{meta.error}</div>
           ) : null}
         </div>
       </div>

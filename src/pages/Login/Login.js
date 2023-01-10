@@ -69,7 +69,7 @@ const Login = () => {
                   placeholder="Email"
                 />
                 {formLogin.touched.email && formLogin.errors.email ? (
-                  <div>{formLogin.errors.email}</div>
+                  <div className="text-danger">{formLogin.errors.email}</div>
                 ) : null}
               </div>
               <div className="mb-2">
@@ -84,6 +84,9 @@ const Login = () => {
                   value={formLogin.values.password}
                   placeholder="Password"
                 />
+                {formLogin.touched.password && formLogin.errors.password ? (
+                  <div className="text-danger">{formLogin.errors.password}</div>
+                ) : null}
               </div>
               <div className="my-3">
                 <input

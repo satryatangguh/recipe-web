@@ -3,11 +3,12 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "../Profile/Profile.css";
-
+import ImageForm from "../../components/ImageForm/ImageForm";
 
 const Profile = () => {
   const [profile, setProfile] = useState();
-  
+  const [uploadImage, setUploadImage] = useState("");
+
   const getProfile = () => {
     axios({
       method: "get",
@@ -16,19 +17,21 @@ const Profile = () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
-    }).then((response) => {
-      console.log(response.data.user);
-      setProfile(response.data.user);
-    }).catch((error) => {
-      console.log(error);
-      alert("Error, reload the page!");
-    });
-  }
+    })
+      .then((response) => {
+        console.log(response.data.user);
+        setProfile(response.data.user);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Error, reload the page!");
+      });
+  };
 
   useEffect(() => {
     getProfile();
   }, []);
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const values = formik.values;
@@ -43,14 +46,17 @@ const Profile = () => {
         name: values.name,
         email: values.email,
         phoneNumber: values.phoneNumber,
+        profilePictureUrl: uploadImage,
       },
-    }).then((response) => {
-      console.log(response);
-      getProfile();
-      window.location.reload();
-    }).catch((error) => {
-      console.log(error);
-    });
+    })
+      .then((response) => {
+        console.log(response);
+        getProfile();
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const formik = useFormik({
@@ -58,12 +64,15 @@ const Profile = () => {
       name: profile && profile.name,
       email: profile && profile.email,
       phoneNumber: profile && profile.phoneNumber,
+      profilePictureUrl: profile && profile.profilePictureUrl,
     },
     enableReinitialize: true,
     validationSchema: Yup.object({
       name: Yup.string().required("Required"),
-      email: Yup.string().required("Required"),
-      phoneNumber: Yup.string().required("Required"),
+      email: Yup.string().email("Invalid Email address").required("Required"),
+      phoneNumber: Yup.string()
+        .matches(/^[0-9]{10,12}$/, "Must be in digit")
+        .required("Required"),
     }),
   });
 
@@ -156,10 +165,10 @@ const Profile = () => {
                           placeholder="Enter username"
                         />
                       </div>
+                      {formik.touched.name && formik.errors.name ? (
+                        <div className="text-danger">{formik.errors.name}</div>
+                      ) : null}
                     </div>
-                    {formik.touched.name && formik.errors.name ? (
-                      <div>{formik.errors.name}</div>
-                    ) : null}
 
                     <div className="row mb-3">
                       <div className="col-lg-12">
@@ -179,10 +188,10 @@ const Profile = () => {
                           placeholder="Enter email"
                         />
                       </div>
+                      {formik.touched.email && formik.errors.email ? (
+                        <div className="text-danger">{formik.errors.email}</div>
+                      ) : null}
                     </div>
-                    {formik.touched.email && formik.errors.email ? (
-                      <div>{formik.errors.email}</div>
-                    ) : null}
 
                     <div className="row mb-3">
                       <div className="col-lg-12">
@@ -202,10 +211,15 @@ const Profile = () => {
                           placeholder="Enter phone number"
                         />
                       </div>
+                      {formik.touched.phoneNumber &&
+                      formik.errors.phoneNumber ? (
+                        <div className="text-danger">
+                          {formik.errors.phoneNumber}
+                        </div>
+                      ) : null}
                     </div>
-                    {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-                      <div>{formik.errors.phoneNumber}</div>
-                    ) : null}
+
+                    <ImageForm onChange={(value) => setUploadImage(value)} />
 
                     <div className="text-start mt-3">
                       <button
@@ -224,6 +238,6 @@ const Profile = () => {
       </section>
     </>
   );
-}
+};
 
 export default Profile;

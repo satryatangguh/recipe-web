@@ -11,3 +11,7 @@
   background-size: cover;
   min-height: 550px;
 }
+
+.text-danger {
+  font-size: 12px;
+}

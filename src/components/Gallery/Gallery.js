@@ -48,8 +48,8 @@ const Gallery = () => {
                         alt={r.name}
                       />
                       <Link
-                        style={{ textDecoration: "none", fontSize: "13px" }}
-                        className="food-btn text-white bg-success fs-5"
+                        style={{textDecoration: "none"}}
+                        className="food-btn text-white text-center bg-success fs-5 p-2"
                         to={`/detail/${r.id}`}
                       >
                         {r.name}
