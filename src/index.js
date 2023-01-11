@@ -38,7 +38,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/our-recipes",
-        element: <OurRecipes />,
+        element:
+          localStorage.getItem("role") === "admin" ? (
+            <FoodList />
+          ) : (
+            <OurRecipes/>
+          ),
       },
       {
         path: "/detail/:foodID",
@@ -65,15 +70,6 @@ const router = createBrowserRouter([
         element:
           localStorage.getItem("role") === "admin" ? (
             <AllUsers />
-          ) : (
-            <ErrorPage />
-          ),
-      },
-      {
-        path: "/food-list",
-        element:
-          localStorage.getItem("role") === "admin" ? (
-            <FoodList />
           ) : (
             <ErrorPage />
           ),

@@ -14,6 +14,10 @@
   height: 200px;
 }
 
+/* .card-food-list {
+  border-radius: ;
+} */
+
 .ri-star-fill {
   font-size: 15px;
   color: #FFD700;
@@ -25,4 +29,13 @@
 
 .rate {
   font-size: 14px;
+}
+
+.text-card {
+  font-size: 13px;
+}
+
+.btn-edit-delete {
+  height: 35px;
+  width: 35px;
 }
