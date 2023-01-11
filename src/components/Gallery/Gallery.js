@@ -35,30 +35,34 @@ const Gallery = () => {
   return (
     <>
       <section className="container-fluid p-home p-responsive">
-        <h1 className="title text-center">Our Latest Recipes</h1>
-          <div className="row g-3 mt-4">
-            {food.slice(0, 4).map((r) => {
-              return (
-                <React.Fragment key={r.id}>
-                  <div className="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <div className="food-gallery d-flex justify-content-center">
-                      <img
-                        className="img-fluid img-gallery"
-                        src={r.imageUrl}
-                        alt={r.name}
-                      />
-                      <Link
-                        style={{textDecoration: "none"}}
-                        className="food-btn text-white text-center bg-success fs-5 p-2"
-                        to={`/detail/${r.id}`}
-                      >
-                        {r.name}
-                      </Link>
+        <h1 className="title text-center">Most Favorite Food</h1>
+        <div className="row g-3 mt-4">
+          {food &&
+            food
+              .sort((a, b) => (a.totalLikes < b.totalLikes ? 1 : -1))
+              .slice(0, 4)
+              .map((r) => {
+                return (
+                  <React.Fragment key={r.id}>
+                    <div className="col-12 col-sm-6 col-md-6 col-lg-3">
+                      <div className="food-gallery d-flex justify-content-center">
+                        <img
+                          className="img-fluid img-gallery"
+                          src={r.imageUrl}
+                          alt={r.name}
+                        />
+                        <Link
+                          style={{ textDecoration: "none" }}
+                          className="food-btn text-white text-center bg-success fs-5 p-2"
+                          to={`/detail/${r.id}`}
+                        >
+                          {r.name}
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                </React.Fragment>
-              );
-            })}
+                  </React.Fragment>
+                );
+              })}
         </div>
       </section>
     </>

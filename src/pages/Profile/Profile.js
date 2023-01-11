@@ -139,11 +139,11 @@ const Profile = () => {
           >
             <div className="modal-dialog">
               <div className="modal-content">
-                <div class="modal-header">
+                <div className="modal-header">
                   <h5 className="modal-title">Edit Profile</h5>
                   <button
                     type="button"
-                    class="btn-close"
+                    className="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
                   ></button>
