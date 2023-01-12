@@ -6,7 +6,7 @@ const ImageForm = ({onChange}) => {
   const [image, setImage] = useState("")
 
   const handleChange = (e) => {
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
     setImage(e.target.files[0]);
   }
 

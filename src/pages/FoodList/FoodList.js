@@ -92,7 +92,7 @@ const FoodList = () => {
         name: values.name,
         description: values.description,
         ingredients: values.ingredients,
-        imageUrl: values.imageUrl ? values.imageUrl : uploadImage,
+        imageUrl: uploadImage,
       },
     })
       .then((response) => {
