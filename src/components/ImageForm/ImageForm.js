@@ -28,7 +28,7 @@ const ImageForm = ({onChange}) => {
       alert(`${response.data.message}`);
     }).catch((error) => {
       console.log(error);
-      alert("Image file required!");
+      alert("Image file size too large!");
     })
   }
 
