@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import ReactStars from "react-stars";
 import "../Detail/Detail.css";
 import defaultImage from "../../assets/default.webp";
 
@@ -151,7 +152,12 @@ const Detail = () => {
             <div className="card-footer ">
               <div className="d-flex align-items-center mt-auto">
                 <span className="text-muted d-flex align-items-center me-3 rate">
-                  <i className="ri-star-fill me-1"></i>
+                  <ReactStars
+                    value={food && food.rating}
+                    edit={false}
+                    size={18}
+                    className="me-1"
+                  />
                   {food && food.rating}
                 </span>
                 <span className="text-muted d-flex align-items-center rate">
@@ -204,28 +210,24 @@ const Detail = () => {
                       </div>
                       <form onSubmit={(e) => handleSubmit(e, food.id)}>
                         <div className="row mb-3">
-                          <div className="col-lg-12">
+                          <div className="col-lg-12 text-center">
                             <label
                               htmlFor="inputName"
                               className="form-label fw-bold mb-1"
                             >
                               Rating
                             </label>
-                            <input
-                              value={formik.values.rating}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              type="number"
-                              className="form-control"
-                              id="rating"
-                              placeholder="Rate this food (1-5)"
-                            />
+                            <ReactStars
+                                name="rating"
+                                value={formik.values.rating}
+                                onChange={(value) => {
+                                  formik.setFieldValue("rating", value);
+                                }}
+                                count={5}
+                                size={50}
+                                className="d-flex justify-content-center"
+                              />
                           </div>
-                          {formik.touched.rating && formik.errors.rating ? (
-                            <div className="text-danger">
-                              {formik.errors.rating}
-                            </div>
-                          ) : null}
                         </div>
                         <div className="row mb-3">
                           <div className="col-lg-12">
@@ -242,7 +244,7 @@ const Detail = () => {
                               type="text"
                               className="form-control"
                               id="review"
-                              placeholder="Review this food"
+                              placeholder="What's your review"
                             />
                           </div>
                           {formik.touched.review && formik.errors.review ? (
@@ -298,8 +300,11 @@ const Detail = () => {
                               {rate.user.name}
                             </p>
                             <p className="d-flex align-items-center review-name">
-                              <i className="ri-star-fill me-1"></i>
-                              {rate.rating}
+                              <ReactStars
+                                value={rate.rating}
+                                edit={false}
+                                size={18}
+                              />
                             </p>
                           </div>
                         </div>
