@@ -10,8 +10,6 @@ import ImageForm from "../../components/ImageForm/ImageForm";
 
 const FoodList = () => {
   const [food, setFood] = useState();
-
-  // eslint-disable-next-line
   const [uploadImage, setUploadImage] = useState("");
 
   const getFoodData = () => {
@@ -94,7 +92,7 @@ const FoodList = () => {
         name: values.name,
         description: values.description,
         ingredients: values.ingredients,
-        imageUrl: values.imageUrl,
+        imageUrl: uploadImage,
       },
     })
       .then((response) => {

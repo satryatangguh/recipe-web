@@ -8,8 +8,6 @@ import defaultImage from "../../assets/default.webp";
 
 const Profile = () => {
   const [profile, setProfile] = useState();
-  
-  // eslint-disable-next-line
   const [uploadImage, setUploadImage] = useState("");
 
   const onImageError = (e) => {
@@ -53,7 +51,7 @@ const Profile = () => {
         name: values.name,
         email: values.email,
         phoneNumber: values.phoneNumber,
-        profilePictureUrl: values.profilePictureUrl,
+        profilePictureUrl: uploadImage,
       },
     })
       .then((response) => {
@@ -93,9 +91,10 @@ const Profile = () => {
               <div className="row g-2">
                 <div className="col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center">
                   <img
-                    src={profile && profile.profilePictureUrl}
+                    src={profile && profile.profilePictureUrl ? profile && profile.profilePictureUrl : defaultImage}
                     className="img-fluid m-0 img-profile-page"
                     alt={profile && profile.name}
+                    onError={onImageError}
                   />
                 </div>
                 <div className="col-lg-8 col-md-8 col-sm-8">
@@ -156,7 +155,11 @@ const Profile = () => {
                 <div className="modal-body p-4">
                   <div className="text-center">
                     <img
-                      src={profile && profile.profilePictureUrl ? profile && profile.profilePictureUrl : defaultImage}
+                      src={
+                        profile && profile.profilePictureUrl
+                          ? profile && profile.profilePictureUrl
+                          : defaultImage
+                      }
                       className="img-fluid img-profile-page mb-3"
                       alt={profile && profile.name}
                       onError={onImageError}
