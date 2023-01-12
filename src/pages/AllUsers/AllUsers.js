@@ -3,9 +3,14 @@ import axios from 'axios';
 import * as Yup from "yup";
 import { useField, Formik, Form } from 'formik';
 import "../AllUsers/AllUsers.css";
+import defaultImage from "../../assets/default.webp";
 
 const AllUsers = () => {
   const [users, setUsers] = useState([])
+
+  const onImageError = (e) => {
+    e.target.src = defaultImage
+  }
 
   const getUsers = () => {
     axios({
@@ -83,9 +88,14 @@ const AllUsers = () => {
                   <div className="card shadow mt-4">
                     <div className="card-body d-flex flex-column p-2">
                       <img
-                        src={r.profilePictureUrl}
+                        src={
+                          r.profilePictureUrl
+                            ? r.profilePictureUrl
+                            : defaultImage
+                        }
                         className="img-card-profile mx-auto mb-2"
                         alt={r.name}
+                        onError={onImageError}
                       />
                       <h5 className="card-title text-center fs-5 mb-3">
                         {r.name}
@@ -139,9 +149,14 @@ const AllUsers = () => {
                       <div className="modal-body p-4">
                         <div className="text-center mb-3">
                           <img
-                            src={r.profilePictureUrl}
+                            src={
+                              r.profilePictureUrl
+                                ? r.profilePictureUrl
+                                : defaultImage
+                            }
                             className="img-card-profile mx-auto mb-3"
                             alt={r.name}
+                            onError={onImageError}
                           />
                           <h5 className="card-title text-center fs-5 mb-2">
                             {r.name}

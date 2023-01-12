@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "../Detail/Detail.css";
+import defaultImage from "../../assets/default.webp";
 
 const Detail = () => {
   let { foodID } = useParams();
@@ -11,6 +12,10 @@ const Detail = () => {
   const [food, setFood] = useState("");
   const [rating, setRating] = useState();
 
+  const onImageError = (e) => {
+    e.target.src = defaultImage;
+  };
+  
   useEffect(() => {
     axios({
       method: "get",
@@ -77,11 +82,11 @@ const Detail = () => {
 
   const formik = useFormik({
     initialValues: {
-      rating: "",
+      rating: 0,
       review: "",
     },
     validationSchema: Yup.object({
-      rating: Yup.string().required("Required"),
+      rating: Yup.number().required("Please enter a rating").min(1, "Rating should be at least 1").max(5, "Rating should not exceed 5"),
       review: Yup.string().required("Required"),
     }),
   });
@@ -216,6 +221,11 @@ const Detail = () => {
                               placeholder="Rate this food (1-5)"
                             />
                           </div>
+                          {formik.touched.rating && formik.errors.rating ? (
+                            <div className="text-danger">
+                              {formik.errors.rating}
+                            </div>
+                          ) : null}
                         </div>
                         <div className="row mb-3">
                           <div className="col-lg-12">
@@ -235,6 +245,11 @@ const Detail = () => {
                               placeholder="Review this food"
                             />
                           </div>
+                          {formik.touched.review && formik.errors.review ? (
+                            <div className="text-danger">
+                              {formik.errors.review}
+                            </div>
+                          ) : null}
                         </div>
                         <div className="text-start mt-3">
                           <button
@@ -267,9 +282,14 @@ const Detail = () => {
                       <div className="d-flex justify-content-start gap-2">
                         <div className="d-flex">
                           <img
-                            src={rate.user.profilePictureUrl}
+                            src={
+                              rate.user.profilePictureUrl
+                                ? rate.user.profilePictureUrl
+                                : defaultImage
+                            }
                             className="img-fluid img-profile"
                             alt={rate.user.name}
+                            onError={onImageError}
                           />
                         </div>
                         <div className="d-flex">

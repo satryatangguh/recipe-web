@@ -4,12 +4,17 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "../Profile/Profile.css";
 import ImageForm from "../../components/ImageForm/ImageForm";
+import defaultImage from "../../assets/default.webp";
 
 const Profile = () => {
   const [profile, setProfile] = useState();
   
   // eslint-disable-next-line
   const [uploadImage, setUploadImage] = useState("");
+
+  const onImageError = (e) => {
+    e.target.src = defaultImage;
+  };
 
   const getProfile = () => {
     axios({
@@ -151,9 +156,10 @@ const Profile = () => {
                 <div className="modal-body p-4">
                   <div className="text-center">
                     <img
-                      src={profile && profile.profilePictureUrl}
+                      src={profile && profile.profilePictureUrl ? profile && profile.profilePictureUrl : defaultImage}
                       className="img-fluid img-profile-page mb-3"
                       alt={profile && profile.name}
+                      onError={onImageError}
                     />
                   </div>
                   <form onSubmit={(e) => handleSubmit(e, profile.id)}>

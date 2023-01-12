@@ -36,7 +36,7 @@ const ImageForm = ({onChange}) => {
     <>
       <div className="row mb-3">
         <div className="col-lg-12">
-          <label className="form-label fw-bold mb-1">Food Image</label>
+          <label className="form-label fw-bold mb-1">Image</label>
           <div className="d-flex">
             <input
               className="form-control file-upload"

@@ -26,7 +26,7 @@ const AddFood = () => {
       .then((response) => {
         console.log(response.data.data);
         alert("Food Successfully Created!");
-        window.location.href = "/food-list"
+        window.location.href = "/our-recipes"
       })
       .catch((error) => {
         console.log(error);
