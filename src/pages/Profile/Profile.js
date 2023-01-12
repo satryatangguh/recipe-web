@@ -51,7 +51,7 @@ const Profile = () => {
         name: values.name,
         email: values.email,
         phoneNumber: values.phoneNumber,
-        profilePictureUrl: uploadImage,
+        profilePictureUrl: values.profilePictureUrl ? values.profilePictureUrl : uploadImage,
       },
     })
       .then((response) => {
