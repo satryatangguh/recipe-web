@@ -129,7 +129,7 @@ const Header = () => {
                             className="dropdown-item fw-bold text-dark"
                             to="/all-users"
                           >
-                            All user
+                            All User
                           </Link>
                         </li>
                       ) : null}

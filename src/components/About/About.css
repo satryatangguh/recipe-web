@@ -9,21 +9,9 @@
 }
 
 .img-about {
-  height: 440px;
+  max-height: 500px;
 }
 
 .about-lh {
   line-height: 1.9;
-}
-
-@media (max-width: 992px) {
-  .p-home {
-    padding: 70px;
-  }
-}
-
-@media (max-width: 576px) {
-  .p-home {
-    padding: 50px;
-  }
 }

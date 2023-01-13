@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const About = () => {
   return (
     <>
-      <section className="container-fluid p-home">
+      <section className="container-fluid p-home p-responsive">
         <div className="row align-items-center g-lg-5 g-md-4 g-4">
           <div className="col-lg-4 col-md-5 col-12 text-center">
             <img
