@@ -11,7 +11,7 @@ const AddFood = () => {
   const onSubmit = (values) => {
     axios({
       method: "post",
-      url: "https://api-bootcamp.do.dibimbing.id/api/v1/create-food",
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/create-food`,
       data: {
         name: values.name,
         description: values.description,
@@ -26,7 +26,7 @@ const AddFood = () => {
       .then((response) => {
         console.log(response.data.data);
         alert("Food Successfully Created!");
-        window.location.href = "/our-recipes"
+        window.location.href = "/our-recipes";
       })
       .catch((error) => {
         console.log(error);

@@ -15,7 +15,7 @@ const Gallery = () => {
       : { apiKey: `${process.env.REACT_APP_APIKEY}` };
     axios({
       method: "get",
-      url: "https://api-bootcamp.do.dibimbing.id/api/v1/foods",
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/foods`,
       headers: headers,
     })
       .then((response) => {

@@ -9,17 +9,19 @@ const Favorite = () => {
   const getLikeFood = () => {
     axios({
       method: "get",
-      url: "https://api-bootcamp.do.dibimbing.id/api/v1/like-foods",
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/like-foods`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
-    }).then((response) => {
-      console.log(response);
-      setFavorite(response.data.data);
-    }).catch((error) => {
-      console.log(error);
-    });
+    })
+      .then((response) => {
+        console.log(response);
+        setFavorite(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const Favorite = () => {
     if (!isLike) {
       axios({
         method: "post",
-        url: "https://api-bootcamp.do.dibimbing.id/api/v1/like",
+        url: `${process.env.REACT_APP_BASEURL}/api/v1/like`,
         data: {
           foodId: id,
         },
@@ -38,15 +40,17 @@ const Favorite = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           apiKey: `${process.env.REACT_APP_APIKEY}`,
         },
-      }).then((response) => {
-        console.log(response);
-      }).catch((error) => {
-        console.log(error);
-      });
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
       axios({
         method: "post",
-        url: "https://api-bootcamp.do.dibimbing.id/api/v1/unlike",
+        url: `${process.env.REACT_APP_BASEURL}/api/v1/unlike`,
         data: {
           foodId: id,
         },
@@ -54,11 +58,13 @@ const Favorite = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           apiKey: `${process.env.REACT_APP_APIKEY}`,
         },
-      }).then((response) => {
-        console.log(response);
-      }).catch((error) => {
-        console.log(error);
-      });
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
     getLikeFood();
   };

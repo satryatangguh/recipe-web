@@ -12,7 +12,7 @@ const Header = () => {
     if (localStorage.getItem("token")) {
       axios({
         method: "get",
-        url: "https://api-bootcamp.do.dibimbing.id/api/v1/user",
+        url: `${process.env.REACT_APP_BASEURL}/api/v1/user`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           apiKey: process.env.REACT_APP_APIKEY,
@@ -30,7 +30,7 @@ const Header = () => {
   const handleLogout = () => {
     axios({
       method: "get",
-      url: "https://api-bootcamp.do.dibimbing.id/api/v1/logout",
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/logout`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: process.env.REACT_APP_APIKEY,

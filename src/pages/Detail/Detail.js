@@ -20,7 +20,7 @@ const Detail = () => {
   useEffect(() => {
     axios({
       method: "get",
-      url: `https://api-bootcamp.do.dibimbing.id/api/v1/foods/${foodID}`,
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/foods/${foodID}`,
       headers: {
         apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
@@ -37,7 +37,7 @@ const Detail = () => {
   const getRating = () => {
     axios({
       method: "get",
-      url: `https://api-bootcamp.do.dibimbing.id/api/v1/food-rating/${foodID}`,
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/food-rating/${foodID}`,
       headers: {
         apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
@@ -61,7 +61,7 @@ const Detail = () => {
     const values = formik.values;
     axios({
       method: "post",
-      url: `https://api-bootcamp.do.dibimbing.id/api/v1/rate-food/${foodID}`,
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/rate-food/${foodID}`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,

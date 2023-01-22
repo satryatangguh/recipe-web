@@ -15,18 +15,20 @@ const AllUsers = () => {
   const getUsers = () => {
     axios({
       method: "get",
-      url: "https://api-bootcamp.do.dibimbing.id/api/v1/all-user",
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/all-user`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,
       },
-    }).then((response) => {
-      console.log(response.data.data);
-      setUsers(response.data.data);
-    }).catch((error) => {
-      console.log(error);
-      alert("Error, reload the page!");
-    });
+    })
+      .then((response) => {
+        console.log(response.data.data);
+        setUsers(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Error, reload the page!");
+      });
   }
 
   useEffect(() => {
@@ -36,7 +38,7 @@ const AllUsers = () => {
   const handleSubmit = (values) => {
     axios({
       method: "post",
-      url: `https://api-bootcamp.do.dibimbing.id/api/v1/update-user-role/${values.id}`,
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/update-user-role/${values.id}`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,

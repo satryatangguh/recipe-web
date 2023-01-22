@@ -34,7 +34,7 @@ const [uploadImage, setUploadImage] = useState("");
     onSubmit: (values) => {
       axios({
         method: "post",
-        url: "https://api-bootcamp.do.dibimbing.id/api/v1/register",
+        url: `${process.env.REACT_APP_BASEURL}/api/v1/register`,
         headers: {
           apiKey: `${process.env.REACT_APP_APIKEY}`,
         },

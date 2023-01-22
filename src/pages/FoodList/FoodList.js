@@ -21,7 +21,7 @@ const FoodList = () => {
       : { apiKey: `${process.env.REACT_APP_APIKEY}` };
     axios({
       method: "get",
-      url: "https://api-bootcamp.do.dibimbing.id/api/v1/foods",
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/foods`,
       headers: headers,
     })
       .then((response) => {
@@ -42,7 +42,7 @@ const FoodList = () => {
     if (!isLike) {
       axios({
         method: "post",
-        url: "https://api-bootcamp.do.dibimbing.id/api/v1/like",
+        url: `${process.env.REACT_APP_BASEURL}/api/v1/like`,
         data: {
           foodId: id,
         },
@@ -61,7 +61,7 @@ const FoodList = () => {
     } else {
       axios({
         method: "post",
-        url: "https://api-bootcamp.do.dibimbing.id/api/v1/unlike",
+        url: `${process.env.REACT_APP_BASEURL}/api/v1/unlike`,
         data: {
           foodId: id,
         },
@@ -83,7 +83,7 @@ const FoodList = () => {
   const handleUpdate = (values) => {
     axios({
       method: "post",
-      url: `https://api-bootcamp.do.dibimbing.id/api/v1/update-food/${values.id}`,
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/update-food/${values.id}`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,
@@ -108,7 +108,7 @@ const FoodList = () => {
     if (window.confirm(`Are you sure want to delete this food?`)) {
       axios({
         method: "delete",
-        url: `https://api-bootcamp.do.dibimbing.id/api/v1/delete-food/${id}`,
+        url: `${process.env.REACT_APP_BASEURL}/api/v1/delete-food/${id}`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           apiKey: `${process.env.REACT_APP_APIKEY}`,

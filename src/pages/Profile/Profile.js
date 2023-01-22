@@ -17,7 +17,7 @@ const Profile = () => {
   const getProfile = () => {
     axios({
       method: "get",
-      url: "https://api-bootcamp.do.dibimbing.id/api/v1/user",
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/user`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,
@@ -42,7 +42,7 @@ const Profile = () => {
     const values = formik.values;
     axios({
       method: "post",
-      url: `https://api-bootcamp.do.dibimbing.id/api/v1/update-profile`,
+      url: `${process.env.REACT_APP_BASEURL}/api/v1/update-profile`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         apiKey: `${process.env.REACT_APP_APIKEY}`,

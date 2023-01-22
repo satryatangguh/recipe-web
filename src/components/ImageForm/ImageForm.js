@@ -11,7 +11,7 @@ const ImageForm = ({onChange}) => {
   }
 
   const handleApi = () => {
-    const url = "https://api-bootcamp.do.dibimbing.id/api/v1/upload-image";
+    const url = `${process.env.REACT_APP_BASEURL}/api/v1/upload-image`;
     const formData = new FormData();
     formData.append("image", image);
     const headersApi = {
